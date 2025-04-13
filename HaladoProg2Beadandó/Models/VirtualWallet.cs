@@ -3,12 +3,12 @@
     public class VirtualWallet
     {
      public int VirtualWalletId { get; set; }
-     public float Amount { get; set; }
-     public string Currency { get; set; }
-
+     public double Amount { get; set; }
+     
     public int UserId { get; set; }
 
     public User User { get; set; }
 
+    public ICollection<CryptoAsset> CryptoAssets { get; set; } = new List<CryptoAsset>();
     }
 }
