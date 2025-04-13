@@ -35,24 +35,24 @@ namespace HaladoProg2Beadandó.Controllers
         }
 
         [HttpGet("{userId}")]
-        public JsonResult GetUsersData(int userId)
+        public async Task<ActionResult<User>> GetUsersData(int userId)
         {
-            var result = _context.Users.Find(userId);
+            var result = await _context.Users.FindAsync(userId);
             if (result == null)
-                return new JsonResult(NotFound());
-            return new JsonResult(Ok(result));
+                return NotFound();
+            return result;
         }
 
 
         [HttpDelete("{userId}")]
-        public JsonResult DeleteSelectedUser(int userId)
+        public async Task<ActionResult> DeleteSelectedUser(int userId)
         {
-            var result = _context.Users.Find(userId);
+            var result = await _context.Users.FindAsync(userId);
             if (result == null)
-                return new JsonResult(NotFound());
+                return NotFound();
             _context.Users.Remove(result);
-            _context.SaveChanges();
-            return new JsonResult(Ok($"Sikeresen törölve lett a {userId} id-jű user."));
+            await _context.SaveChangesAsync();
+            return Ok($"Sikeresen törölve lett a {userId} id-jű user.");
         }
 
 

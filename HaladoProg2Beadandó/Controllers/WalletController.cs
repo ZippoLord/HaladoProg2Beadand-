@@ -48,9 +48,9 @@ namespace HaladoProg2Beadandó.Controllers
         [HttpDelete("{userId}")]
         public async Task<IActionResult> DeleteWallet(int userId)
         {
-            var result = await _context.VirtualWallets.FirstOrDefaultAsync(w => w.VirtualWalletId == userId);
+            var result = await _context.VirtualWallets.FirstOrDefaultAsync(w => w.UserId == userId);
             if (result == null)
-                return new JsonResult(NotFound("Nincs ilyen id-jű wallet"));
+                return new JsonResult(NotFound("Nincs ilyen id-jű felhasználó."));
             _context.VirtualWallets.Remove(result);
             _context.SaveChanges();
             return new JsonResult(Ok($"Sikeresen törölve lett a {userId} id-hez tartozó walletje."));
