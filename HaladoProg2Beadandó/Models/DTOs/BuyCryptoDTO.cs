@@ -4,8 +4,6 @@ namespace HaladoProg2Beadandó.Models.DTOs
 {
     public class BuyCryptoDTO
     {
-
-        [JsonIgnore]
         public int UserId { get; set; }
         public string Symbol { get; set; }
 

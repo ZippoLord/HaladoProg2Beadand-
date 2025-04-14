@@ -9,10 +9,10 @@ namespace HaladoProg2Beadandó.Controllers
 {
     [Route("api/trade")]
     [ApiController]
-    public class BuyCryptoController : DataContextController
+    public class CryptoController : DataContextController
     {
 
-        public BuyCryptoController(DataContext context) : base(context) { }
+        public CryptoController(DataContext context) : base(context) { }
 
 
         [HttpPost("buy")]
@@ -68,7 +68,34 @@ namespace HaladoProg2Beadandó.Controllers
 
         }
 
+        [HttpPost("sell")]
+        public async Task<IActionResult> SellCrypto(int userId, [FromBody] SellCryptoDTO dto)
+            {
+                var user = await _context.Users
+               .Include(u => u.VirtualWallet)
+               .ThenInclude(w => w.CryptoAssets)
+               .FirstOrDefaultAsync(u => u.UserId == u.VirtualWallet.UserId);
 
+                if (user == null)
+                    return NotFound("Felhasználó nem található");
 
+                var crypto = await _context.CryptoCurrencies
+                    .FirstOrDefaultAsync(c => c.Symbol == dto.Symbol);
+
+                if (crypto == null)
+                    return NotFound("Ilyen kriptovaluta nem létezik");
+
+            if (crypto.Amount < dto.AmountToSell)
+                return BadRequest("Nem tudsz ennyit eladni");
+            user.VirtualWallet.Amount -= dto.AmountToSell;
+            double totalSale = dto.AmountToSell * crypto.Price;
+            user.VirtualWallet.Amount += totalSale;
+            crypto.Amount += dto.AmountToSell;
+            crypto.Price += totalSale;
+           
+           
+            await _context.SaveChangesAsync();
+            return Ok("Sikeres eladás");
+            }
     }
 }
