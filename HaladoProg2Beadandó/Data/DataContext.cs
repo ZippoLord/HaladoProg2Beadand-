@@ -8,7 +8,10 @@ namespace HaladoProg2Beadandó.Data
        public DbSet<User> Users { get; set; }
         public DbSet<VirtualWallet> VirtualWallets { get; set; }
 
-        public DbSet<CryptoCurrency> CryptoCurrencies { get; set; }
+        public DbSet<CryptoCurrency> CryptoCurrencies { get; set;  }
+
+        public DbSet<CryptoAsset> CryptoAssets { get; set; }
+
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

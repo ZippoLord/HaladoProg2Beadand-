@@ -12,7 +12,7 @@ namespace HaladoProg2Beadandó.Controllers
     [Route("api/wallet")]
     public class WalletController : DataContextController
     {
-       public WalletController(DataContext context) : base(context) { }
+        public WalletController(DataContext context) : base(context) { }
 
         [HttpGet("{userId}")]
         public async Task<IActionResult> getWalletById(int userId)
@@ -26,7 +26,7 @@ namespace HaladoProg2Beadandó.Controllers
                 {
                     u.VirtualWallet.Amount,
                     CryptoAssets = u.VirtualWallet.CryptoAssets.Select(ca => new
-                    { ca.Name, ca.Price }).ToList()
+                    { ca.Symbol, ca.Amount, ca.CryptoCurrencyName, ca.Price }).ToList()
                 }
             }).FirstOrDefaultAsync();
             return Ok(uservallet);
