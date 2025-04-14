@@ -41,17 +41,14 @@ namespace HaladoProg2Beadandó.Controllers
             if (crypto.Amount < dto.AmountToBuy)
                 return BadRequest("Nincs elég elérhető mennyiség ebből a kriptovalutából");
             crypto.Amount -= dto.AmountToBuy;
-
+            
             var existingAsset = user.VirtualWallet.CryptoAssets
                 .FirstOrDefault(c => c.Symbol == dto.Symbol);
 
             if (existingAsset != null)
             {
-                Console.WriteLine($"Found asset: {existingAsset.Symbol} with amount: {existingAsset.Amount}");
                 existingAsset.Amount += dto.AmountToBuy;
                 existingAsset.Price += totalCost;
-                Console.WriteLine(totalCost);
-                Console.WriteLine($"Updated amount: {existingAsset.Amount}");
             }
             else
             {
@@ -59,6 +56,7 @@ namespace HaladoProg2Beadandó.Controllers
                 {
                     Symbol = dto.Symbol,
                     Amount = dto.AmountToBuy,
+                    Price = totalCost,
                     CryptoCurrencyName = dto.CryptoCurrencyName,
                     VirtualWalletId = user.VirtualWallet.VirtualWalletId,
                 };
@@ -66,8 +64,8 @@ namespace HaladoProg2Beadandó.Controllers
             }
 
             await _context.SaveChangesAsync();
-
             return Ok("Sikeres vásárlás");
+
         }
 
 
