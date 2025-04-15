@@ -4,6 +4,7 @@ using HaladoProg2Beadandó.Data;
 using Microsoft.EntityFrameworkCore;
 using HaladoProg2Beadandó.Models.DTOs;
 using HaladoProg2Beadandó.Models;
+using AutoMapper;
 
 
 
@@ -13,29 +14,26 @@ namespace HaladoProg2Beadandó.Controllers
     [Route("api/wallet")]
     public class WalletController : DataContextController
     {
-        public WalletController(DataContext context) : base(context) { }
+
+        private readonly IMapper mapper;
+        public WalletController(DataContext context, IMapper mapper) : base(context) 
+            {
+                this.mapper = mapper;
+            }
+        
 
         [HttpGet("{userId}")]
         public async Task<IActionResult> getWalletById(int userId)
         {
-            var result = await _context.VirtualWallets.FirstOrDefaultAsync(w => w.UserId == userId);
-            if (result == null)
-                return new JsonResult(NotFound());
-            var uservallet = await _context.Users.Where(u => u.UserId == userId).Select(u => new
-            {
-                VirtualWallet = new VirtualWallet
-                {
-                    Amount = u.VirtualWallet.Amount,
-                    CryptoAssets = u.VirtualWallet.CryptoAssets.Select(ca => new CryptoAsset
-                    {
-                        Symbol = ca.Symbol,
-                        Amount = ca.Amount,
-                        CryptoCurrencyName = ca.CryptoCurrencyName,
-                        Price = ca.Price
-                    }).ToList()
-                }
-            }).FirstOrDefaultAsync();
-            return Ok(uservallet);
+            var wallet = await _context.VirtualWallets
+            .Include(w => w.CryptoAssets)
+            .FirstOrDefaultAsync(w => w.UserId == userId);
+
+            if (wallet == null)
+                return NotFound("Nem található pénztárca ezzel a userId-vel.");
+
+            var walletDto = mapper.Map<GetWalletDTO>(wallet);
+            return Ok(walletDto);
         }
 
 
@@ -44,10 +42,10 @@ namespace HaladoProg2Beadandó.Controllers
         {
             var result = await _context.VirtualWallets.FirstOrDefaultAsync(w => w.UserId == userId);
             if (result == null)
-                return new JsonResult(NotFound("Nincs ilyen idjű wallet"));
+                return NotFound("Nincs ilyen idjű wallet");
             result.Amount = walletDTO.Amount;
             await _context.SaveChangesAsync();
-            return new JsonResult(Ok($"Sikeresen módosítva lett a {userId} id-jű wallet egyenlege."));
+            return Ok($"Sikeresen módosítva lett a {userId} id-jű wallet egyenlege.");
         }
 
 
@@ -56,10 +54,10 @@ namespace HaladoProg2Beadandó.Controllers
         {
             var result = await _context.VirtualWallets.FirstOrDefaultAsync(w => w.UserId == userId);
             if (result == null)
-                return new JsonResult(NotFound("Nincs ilyen id-jű felhasználó."));
+                return NotFound("Nincs ilyen id-jű felhasználó.");
             _context.VirtualWallets.Remove(result);
             _context.SaveChanges();
-            return new JsonResult(Ok($"Sikeresen törölve lett a {userId} id-hez tartozó walletje."));
+            return Ok($"Sikeresen törölve lett a {userId} id-hez tartozó walletje.");
         }
     }
 }

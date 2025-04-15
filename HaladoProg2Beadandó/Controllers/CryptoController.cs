@@ -4,6 +4,7 @@ using HaladoProg2Beadandó.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace HaladoProg2Beadandó.Controllers
 {
@@ -11,8 +12,10 @@ namespace HaladoProg2Beadandó.Controllers
     [ApiController]
     public class CryptoController : DataContextController
     {
-
-        public CryptoController(DataContext context) : base(context) { }
+        private readonly IMapper mapper;
+        public CryptoController(DataContext context, IMapper mapper) : base(context) {
+            this.mapper = mapper;
+        }
 
 
         [HttpPost("buy")]
@@ -69,12 +72,12 @@ namespace HaladoProg2Beadandó.Controllers
         }
 
         [HttpPost("sell")]
-        public async Task<IActionResult> SellCrypto(int userId, [FromBody] SellCryptoDTO dto)
+        public async Task<IActionResult> SellCrypto([FromBody] SellCryptoDTO dto)
             {
                 var user = await _context.Users
                .Include(u => u.VirtualWallet)
                .ThenInclude(w => w.CryptoAssets)
-               .FirstOrDefaultAsync(u => u.UserId == u.VirtualWallet.UserId);
+               .FirstOrDefaultAsync(u => u.UserId == dto.UserId);
 
                 if (user == null)
                     return NotFound("Felhasználó nem található");
@@ -82,18 +85,28 @@ namespace HaladoProg2Beadandó.Controllers
                 var crypto = await _context.CryptoCurrencies
                     .FirstOrDefaultAsync(c => c.Symbol == dto.Symbol);
 
-                if (crypto == null)
-                    return NotFound("Ilyen kriptovaluta nem létezik");
+                var cryptoAsset = user.VirtualWallet.CryptoAssets
+    .           FirstOrDefault(ca => ca.Symbol == dto.Symbol);
 
-            if (crypto.Amount < dto.AmountToSell)
-                return BadRequest("Nem tudsz ennyit eladni");
-            user.VirtualWallet.Amount -= dto.AmountToSell;
-            double totalSale = dto.AmountToSell * crypto.Price;
-            user.VirtualWallet.Amount += totalSale;
-            crypto.Amount += dto.AmountToSell;
-            crypto.Price += totalSale;
-           
-           
+            if (crypto == null)
+                    return NotFound("Ilyen kriptovaluta nem létezik");
+             
+                 if (crypto.Amount < dto.AmountToSell)
+                    return BadRequest("Nem tudsz ennyit eladni");
+                 cryptoAsset.Amount -= dto.AmountToSell;
+                 double totalSale = dto.AmountToSell * crypto.Price;
+                 cryptoAsset.Price -= totalSale;
+                 crypto.Amount += dto.AmountToSell;
+            if (cryptoAsset.Amount == 0)
+                _context.CryptoAssets.Remove(cryptoAsset);
+
+                // Növeld a felhasználó pénztárcájának egyenlegét
+                 user.VirtualWallet.Amount += totalSale;
+
+
+
+
+
             await _context.SaveChangesAsync();
             return Ok("Sikeres eladás");
             }

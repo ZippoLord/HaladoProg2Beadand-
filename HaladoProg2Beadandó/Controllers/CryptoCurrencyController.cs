@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using HaladoProg2Beadandó.Models.DTOs;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using AutoMapper;
 
 namespace HaladoProg2Beadandó.Controllers
 {
@@ -14,7 +15,10 @@ namespace HaladoProg2Beadandó.Controllers
     [Route("api/crypto")]
     public class CryptoCurrencyController : DataContextController
     {
-        public CryptoCurrencyController(DataContext context) : base(context) { }
+        private readonly IMapper mapper;
+        public CryptoCurrencyController(DataContext context, IMapper mapper) : base(context) {
+            this.mapper = mapper;
+        }
 
 
         [HttpGet("cryptos")]
@@ -39,15 +43,9 @@ namespace HaladoProg2Beadandó.Controllers
 
         [HttpPut("cryptos")]
 
-        public async Task<ActionResult> AddCrypto([FromBody] CryptoCurrencyDTO cryptoCurrencyDTO)
+        public async Task<IActionResult> AddCrypto([FromBody] CryptoCurrencyDTO cryptoCurrencyDTO)
         {
-            var crypto = new CryptoCurrency
-            {
-                Symbol = cryptoCurrencyDTO.Symbol,
-                CryptoCurrencyName = cryptoCurrencyDTO.CryptoCurrencyName,
-                Price = cryptoCurrencyDTO.Price,
-                Amount = cryptoCurrencyDTO.Amount
-            };
+            var crypto = mapper.Map<CryptoCurrency>(cryptoCurrencyDTO);
             _context.CryptoCurrencies.Add(crypto);
             await _context.SaveChangesAsync();
             return Ok("Sikeresen hozzáadta cryptovalutát");

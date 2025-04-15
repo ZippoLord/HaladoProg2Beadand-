@@ -21,19 +21,19 @@ namespace HaladoProg2Beadandó.Controllers
         }
         //register user
         [HttpPost("register")]
-        public async Task<JsonResult> RegisterUser(UserRegisterDTO userDTO)
+        public async Task<IActionResult> RegisterUser(UserRegisterDTO userDTO)
         {
            
                 var existedEmail = await _context.Users.FirstOrDefaultAsync(u => u.Email == userDTO.Email);
                 if (existedEmail != null)
-                    return new JsonResult(BadRequest("Ez az email cím már foglalt"));
+                    return (BadRequest("Ez az email cím már foglalt"));
 
                 var user = mapper.Map<User>(userDTO);
-                //user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+                user.Password = BCrypt.Net.BCrypt.HashPassword(userDTO.Password);
 
             _context.Users.Add(user);            
             _context.SaveChanges();
-            return new JsonResult(Ok("Sikeresen hozzáadva a felhasználó"));
+            return (Ok("Sikeresen hozzáadva a felhasználó"));
         }
 
         [HttpGet("{userId}")]
@@ -60,21 +60,23 @@ namespace HaladoProg2Beadandó.Controllers
 
 
         [HttpPut("{userId}")]
-        public async Task<JsonResult> EditSelectedUser(int userId, [FromBody] UserRegisterDTO userDTO)
+        public async Task<IActionResult> EditSelectedUser(int userId, [FromBody] UserEditDTO userDTO)
         {
             var result = await _context.Users.FindAsync(userId);
             if (result == null)
-                return new JsonResult(NotFound());
+                return NotFound();
 
             var existedEmail = await _context.Users.FirstOrDefaultAsync(u => u.Email == userDTO.Email);
             if(existedEmail != null) 
-                return new JsonResult(BadRequest("Ez az email cím már foglalt"));
+                return BadRequest("Ez az email cím már foglalt");
+
 
             result.Name = userDTO.Name;
             result.Email = userDTO.Email;
-            result.Password = userDTO.Password;
+            result.Password = BCrypt.Net.BCrypt.HashPassword(userDTO.Password);
+
             await _context.SaveChangesAsync();
-            return new JsonResult(Ok($"Sikeresen módosítva lett a {userId} id-jű user."));
+            return Ok($"Sikeresen módosítva lett a {userId} id-jű user.");
         }
     }
 }

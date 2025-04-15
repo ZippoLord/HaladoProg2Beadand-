@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace HaladoProg2Beadandó.Models.DTOs
 {
@@ -6,19 +7,17 @@ namespace HaladoProg2Beadandó.Models.DTOs
     {
 
         [Required]
-        [StringLength(7, ErrorMessage = "The password must be 7 characters long")]
+        [StringLength(3, ErrorMessage = "A szimbólum legfeljebb 3 karakter lehet.")]
         public string Symbol { get; set; } = null!;
-
 
         [Required]
         public string CryptoCurrencyName { get; set; } = null!;
 
-        [Required] 
-        [Range(50, 1000, ErrorMessage = "Az értéknek 50 és 1000 között kell lennie.")]
+
+        [Range(100, 1000, ErrorMessage = "Az értéknek 100 és 1000 között kell lennie.")]
         public double Price { get; set; }
 
-        [Required]
-        [Range(50, 1000,  ErrorMessage = "Az értéknek 50 és 1000 között kell lennie.")]
+        [Range(100, 1000, ErrorMessage = "Az értéknek 100 és 1000 között kell lennie.")]
         public double Amount { get; set; }
     }
 }
