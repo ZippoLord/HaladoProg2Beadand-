@@ -5,6 +5,7 @@ using HaladoProg2Beadandó.Models;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using HaladoProg2Beadandó.Models.DTOs;
+using AutoMapper;
 
 namespace HaladoProg2Beadandó.Controllers
 {
@@ -12,40 +13,42 @@ namespace HaladoProg2Beadandó.Controllers
     [Route("api/users")]
     public class UserController : DataContextController
     {
-        public UserController(DataContext context) : base(context) { }
+        private readonly IMapper mapper;
+
+        public UserController(DataContext context, IMapper mapper) : base(context)
+        {
+            this.mapper = mapper;
+        }
         //register user
         [HttpPost("register")]
-        public async Task<JsonResult> RegisterUser(UserDTO userDTO)
+        public async Task<JsonResult> RegisterUser(UserRegisterDTO userDTO)
         {
            
                 var existedEmail = await _context.Users.FirstOrDefaultAsync(u => u.Email == userDTO.Email);
                 if (existedEmail != null)
                     return new JsonResult(BadRequest("Ez az email cím már foglalt"));
 
-                var user = new User
-                {
-                    Name = userDTO.Name,
-                    Email = userDTO.Email,
-                    Password = userDTO.Password
-                };
+                var user = mapper.Map<User>(userDTO);
+                //user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
-                _context.Users.Add(user);            
+            _context.Users.Add(user);            
             _context.SaveChanges();
             return new JsonResult(Ok("Sikeresen hozzáadva a felhasználó"));
         }
 
         [HttpGet("{userId}")]
-        public async Task<ActionResult<User>> GetUsersData(int userId)
+        public async Task<ActionResult<UserReadDTO>> GetUsersData(int userId)
         {
-            var result = await _context.Users.FindAsync(userId);
-            if (result == null)
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null)
                 return NotFound();
+            var result = mapper.Map<UserReadDTO>(user);
             return result;
         }
 
 
         [HttpDelete("{userId}")]
-        public async Task<ActionResult> DeleteSelectedUser(int userId)
+        public async Task<IActionResult> DeleteSelectedUser(int userId)
         {
             var result = await _context.Users.FindAsync(userId);
             if (result == null)
@@ -57,7 +60,7 @@ namespace HaladoProg2Beadandó.Controllers
 
 
         [HttpPut("{userId}")]
-        public async Task<JsonResult> EditSelectedUser(int userId, [FromBody] UserDTO userDTO)
+        public async Task<JsonResult> EditSelectedUser(int userId, [FromBody] UserRegisterDTO userDTO)
         {
             var result = await _context.Users.FindAsync(userId);
             if (result == null)

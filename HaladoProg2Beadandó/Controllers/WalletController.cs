@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using HaladoProg2Beadandó.Data;
 using Microsoft.EntityFrameworkCore;
 using HaladoProg2Beadandó.Models.DTOs;
+using HaladoProg2Beadandó.Models;
 
 
 
@@ -22,11 +23,16 @@ namespace HaladoProg2Beadandó.Controllers
                 return new JsonResult(NotFound());
             var uservallet = await _context.Users.Where(u => u.UserId == userId).Select(u => new
             {
-                VirtualWallet = new
+                VirtualWallet = new VirtualWallet
                 {
-                    u.VirtualWallet.Amount,
-                    CryptoAssets = u.VirtualWallet.CryptoAssets.Select(ca => new
-                    { ca.Symbol, ca.Amount, ca.CryptoCurrencyName, ca.Price }).ToList()
+                    Amount = u.VirtualWallet.Amount,
+                    CryptoAssets = u.VirtualWallet.CryptoAssets.Select(ca => new CryptoAsset
+                    {
+                        Symbol = ca.Symbol,
+                        Amount = ca.Amount,
+                        CryptoCurrencyName = ca.CryptoCurrencyName,
+                        Price = ca.Price
+                    }).ToList()
                 }
             }).FirstOrDefaultAsync();
             return Ok(uservallet);

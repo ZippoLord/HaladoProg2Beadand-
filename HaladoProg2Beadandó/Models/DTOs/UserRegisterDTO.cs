@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HaladoProg2Beadandó.Models.DTOs
 {
-    public class UserDTO
+    public class UserRegisterDTO
     {
 
         [Required]
