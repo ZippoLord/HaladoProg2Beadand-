@@ -72,12 +72,12 @@ namespace HaladoProg2Beadandó.Controllers
         }
 
         [HttpPost("sell")]
-        public async Task<IActionResult> SellCrypto([FromBody] SellCryptoDTO dto)
+        public async Task<IActionResult> SellCrypto(int userId,[FromBody] SellCryptoDTO dto)
             {
                 var user = await _context.Users
                .Include(u => u.VirtualWallet)
                .ThenInclude(w => w.CryptoAssets)
-               .FirstOrDefaultAsync(u => u.UserId == dto.UserId);
+               .FirstOrDefaultAsync(u => u.UserId == userId);
 
                 if (user == null)
                     return NotFound("Felhasználó nem található");
@@ -97,7 +97,7 @@ namespace HaladoProg2Beadandó.Controllers
                  double totalSale = dto.AmountToSell * crypto.Price;
                  cryptoAsset.Price -= totalSale;
                  crypto.Amount += dto.AmountToSell;
-            if (cryptoAsset.Amount == 0)
+                 if (cryptoAsset.Amount == 0)
                 _context.CryptoAssets.Remove(cryptoAsset);
 
                 // Növeld a felhasználó pénztárcájának egyenlegét
