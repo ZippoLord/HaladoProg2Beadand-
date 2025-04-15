@@ -1,6 +1,7 @@
 
 using HaladoProg2Beadandó.Data;
 using HaladoProg2Beadandó.MapperConfigs;
+using HaladoProg2Beadandó.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace HaladoProg2Beadandó
@@ -19,6 +20,7 @@ namespace HaladoProg2Beadandó
             builder.Services.AddSwaggerGen();
             builder.Services.AddOpenApi();
             builder.Services.AddAutoMapper(typeof(Program).Assembly);
+            builder.Services.AddHostedService<CryptoBGS>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

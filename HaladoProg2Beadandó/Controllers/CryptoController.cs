@@ -24,7 +24,7 @@ namespace HaladoProg2Beadandó.Controllers
             var user = await _context.Users
                 .Include(u => u.VirtualWallet)
                 .ThenInclude(w => w.CryptoAssets)
-                .FirstOrDefaultAsync(u => u.UserId == u.VirtualWallet.UserId);
+                .FirstOrDefaultAsync(u => u.UserId == userId);
 
             if (user == null)
                 return NotFound("Felhasználó nem található");
@@ -110,5 +110,8 @@ namespace HaladoProg2Beadandó.Controllers
             await _context.SaveChangesAsync();
             return Ok("Sikeres eladás");
             }
+
+
+        //TODO PORTFOLIO
     }
 }
