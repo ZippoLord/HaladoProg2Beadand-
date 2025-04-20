@@ -1,0 +1,1010 @@
+[
+  {
+    "CryptoCurrencyId": 39,
+    "CryptoCurrencyName": "Bitcoin",
+    "Symbol": "BTC",
+    "Price": 29492.91,
+    "OldPrice": 29480.36,
+    "Amount": 1500,
+    "Date": "2025-04-20T19:09:19.2124209+02:00"
+  },
+  {
+    "CryptoCurrencyId": 40,
+    "CryptoCurrencyName": "Ethereum",
+    "Symbol": "ETH",
+    "Price": 1815.41,
+    "OldPrice": 1814.27,
+    "Amount": 1195,
+    "Date": "2025-04-20T19:09:19.3887603+02:00"
+  },
+  {
+    "CryptoCurrencyId": 41,
+    "CryptoCurrencyName": "Tether",
+    "Symbol": "USDT",
+    "Price": 1,
+    "OldPrice": 1,
+    "Amount": 500000,
+    "Date": "2025-04-20T19:09:19.4082872+02:00"
+  },
+  {
+    "CryptoCurrencyId": 42,
+    "CryptoCurrencyName": "Binance Coin",
+    "Symbol": "BNB",
+    "Price": 433.49,
+    "OldPrice": 433.32,
+    "Amount": 1800,
+    "Date": "2025-04-20T19:09:19.438854+02:00"
+  },
+  {
+    "CryptoCurrencyId": 43,
+    "CryptoCurrencyName": "Solana",
+    "Symbol": "SOL",
+    "Price": 151.41,
+    "OldPrice": 151.21,
+    "Amount": 1200,
+    "Date": "2025-04-20T19:09:19.4736788+02:00"
+  },
+  {
+    "CryptoCurrencyId": 44,
+    "CryptoCurrencyName": "Ripple",
+    "Symbol": "XRP",
+    "Price": 1.5,
+    "OldPrice": 1.5,
+    "Amount": 2996,
+    "Date": "2025-04-20T19:09:19.4797242+02:00"
+  },
+  {
+    "CryptoCurrencyId": 45,
+    "CryptoCurrencyName": "Cardano",
+    "Symbol": "ADA",
+    "Price": 0.9,
+    "OldPrice": 0.9,
+    "Amount": 3500,
+    "Date": "2025-04-20T19:09:19.492996+02:00"
+  },
+  {
+    "CryptoCurrencyId": 46,
+    "CryptoCurrencyName": "Dodgecoin",
+    "Symbol": "DOGE",
+    "Price": 0.1,
+    "OldPrice": 0.1,
+    "Amount": 4500,
+    "Date": "2025-04-20T19:09:19.5065436+02:00"
+  },
+  {
+    "CryptoCurrencyId": 47,
+    "CryptoCurrencyName": "Polkadot",
+    "Symbol": "DOT",
+    "Price": 40.36,
+    "OldPrice": 40.34,
+    "Amount": 1600,
+    "Date": "2025-04-20T19:09:19.5194574+02:00"
+  },
+  {
+    "CryptoCurrencyId": 48,
+    "CryptoCurrencyName": "Avalanche",
+    "Symbol": "AVAX",
+    "Price": 80.61,
+    "OldPrice": 80.59,
+    "Amount": 1000,
+    "Date": "2025-04-20T19:09:19.5331267+02:00"
+  },
+  {
+    "CryptoCurrencyId": 49,
+    "CryptoCurrencyName": "Tron",
+    "Symbol": "TRX",
+    "Price": 0.07,
+    "OldPrice": 0.07,
+    "Amount": 2500,
+    "Date": "2025-04-20T19:09:19.5670857+02:00"
+  },
+  {
+    "CryptoCurrencyId": 50,
+    "CryptoCurrencyName": "Litecoin",
+    "Symbol": "LTC",
+    "Price": 201.94,
+    "OldPrice": 201.94,
+    "Amount": 1700,
+    "Date": "2025-04-20T19:09:19.572811+02:00"
+  },
+  {
+    "CryptoCurrencyId": 51,
+    "CryptoCurrencyName": "Chainlink",
+    "Symbol": "LINK",
+    "Price": 25.25,
+    "OldPrice": 25.23,
+    "Amount": 2100,
+    "Date": "2025-04-20T19:09:19.613687+02:00"
+  },
+  {
+    "CryptoCurrencyId": 52,
+    "CryptoCurrencyName": "Shiba Inu",
+    "Symbol": "SHIB",
+    "Price": 0,
+    "OldPrice": 0,
+    "Amount": 100000000,
+    "Date": "2025-04-20T19:09:19.6183526+02:00"
+  },
+  {
+    "CryptoCurrencyId": 53,
+    "CryptoCurrencyName": "Uniswap",
+    "Symbol": "UNI",
+    "Price": 2004.05,
+    "OldPrice": 2001.28,
+    "Amount": 1300,
+    "Date": "2025-04-20T19:09:19.6327787+02:00"
+  },
+  {
+    "CryptoCurrencyId": 54,
+    "CryptoCurrencyName": "Binzo",
+    "Symbol": "BRR",
+    "Price": 1007.82,
+    "OldPrice": 1006.76,
+    "Amount": 1000,
+    "Date": "2025-04-20T19:09:19.6599688+02:00"
+  },
+  {
+    "CryptoCurrencyId": 39,
+    "CryptoCurrencyName": "Bitcoin",
+    "Symbol": "BTC",
+    "Price": 29497.54,
+    "OldPrice": 29492.91,
+    "Amount": 1500,
+    "Date": "2025-04-20T19:10:19.6753252+02:00"
+  },
+  {
+    "CryptoCurrencyId": 40,
+    "CryptoCurrencyName": "Ethereum",
+    "Symbol": "ETH",
+    "Price": 1816.02,
+    "OldPrice": 1815.41,
+    "Amount": 1195,
+    "Date": "2025-04-20T19:10:19.6834295+02:00"
+  },
+  {
+    "CryptoCurrencyId": 41,
+    "CryptoCurrencyName": "Tether",
+    "Symbol": "USDT",
+    "Price": 1,
+    "OldPrice": 1,
+    "Amount": 500000,
+    "Date": "2025-04-20T19:10:19.6929002+02:00"
+  },
+  {
+    "CryptoCurrencyId": 42,
+    "CryptoCurrencyName": "Binance Coin",
+    "Symbol": "BNB",
+    "Price": 433.61,
+    "OldPrice": 433.49,
+    "Amount": 1800,
+    "Date": "2025-04-20T19:10:19.7040295+02:00"
+  },
+  {
+    "CryptoCurrencyId": 43,
+    "CryptoCurrencyName": "Solana",
+    "Symbol": "SOL",
+    "Price": 151.51,
+    "OldPrice": 151.41,
+    "Amount": 1200,
+    "Date": "2025-04-20T19:10:19.7151491+02:00"
+  },
+  {
+    "CryptoCurrencyId": 44,
+    "CryptoCurrencyName": "Ripple",
+    "Symbol": "XRP",
+    "Price": 1.5,
+    "OldPrice": 1.5,
+    "Amount": 2996,
+    "Date": "2025-04-20T19:10:19.7257917+02:00"
+  },
+  {
+    "CryptoCurrencyId": 45,
+    "CryptoCurrencyName": "Cardano",
+    "Symbol": "ADA",
+    "Price": 0.9,
+    "OldPrice": 0.9,
+    "Amount": 3500,
+    "Date": "2025-04-20T19:10:19.7370568+02:00"
+  },
+  {
+    "CryptoCurrencyId": 46,
+    "CryptoCurrencyName": "Dodgecoin",
+    "Symbol": "DOGE",
+    "Price": 0.1,
+    "OldPrice": 0.1,
+    "Amount": 4500,
+    "Date": "2025-04-20T19:10:19.7480542+02:00"
+  },
+  {
+    "CryptoCurrencyId": 47,
+    "CryptoCurrencyName": "Polkadot",
+    "Symbol": "DOT",
+    "Price": 40.42,
+    "OldPrice": 40.36,
+    "Amount": 1600,
+    "Date": "2025-04-20T19:10:19.7653019+02:00"
+  },
+  {
+    "CryptoCurrencyId": 48,
+    "CryptoCurrencyName": "Avalanche",
+    "Symbol": "AVAX",
+    "Price": 80.68,
+    "OldPrice": 80.61,
+    "Amount": 1000,
+    "Date": "2025-04-20T19:10:19.7725589+02:00"
+  },
+  {
+    "CryptoCurrencyId": 49,
+    "CryptoCurrencyName": "Tron",
+    "Symbol": "TRX",
+    "Price": 0.07,
+    "OldPrice": 0.07,
+    "Amount": 2500,
+    "Date": "2025-04-20T19:10:19.7843513+02:00"
+  },
+  {
+    "CryptoCurrencyId": 50,
+    "CryptoCurrencyName": "Litecoin",
+    "Symbol": "LTC",
+    "Price": 201.98,
+    "OldPrice": 201.94,
+    "Amount": 1700,
+    "Date": "2025-04-20T19:10:19.7954996+02:00"
+  },
+  {
+    "CryptoCurrencyId": 51,
+    "CryptoCurrencyName": "Chainlink",
+    "Symbol": "LINK",
+    "Price": 25.28,
+    "OldPrice": 25.25,
+    "Amount": 2100,
+    "Date": "2025-04-20T19:10:19.8068646+02:00"
+  },
+  {
+    "CryptoCurrencyId": 52,
+    "CryptoCurrencyName": "Shiba Inu",
+    "Symbol": "SHIB",
+    "Price": 0,
+    "OldPrice": 0,
+    "Amount": 100000000,
+    "Date": "2025-04-20T19:10:19.8183486+02:00"
+  },
+  {
+    "CryptoCurrencyId": 53,
+    "CryptoCurrencyName": "Uniswap",
+    "Symbol": "UNI",
+    "Price": 2005.61,
+    "OldPrice": 2004.05,
+    "Amount": 1300,
+    "Date": "2025-04-20T19:10:19.8292527+02:00"
+  },
+  {
+    "CryptoCurrencyId": 54,
+    "CryptoCurrencyName": "Binzo",
+    "Symbol": "BRR",
+    "Price": 1009.13,
+    "OldPrice": 1007.82,
+    "Amount": 1000,
+    "Date": "2025-04-20T19:10:19.8406873+02:00"
+  },
+  {
+    "CryptoCurrencyId": 39,
+    "CryptoCurrencyName": "Bitcoin",
+    "Symbol": "BTC",
+    "Price": 29531.52,
+    "OldPrice": 29497.54,
+    "Amount": 1500,
+    "Date": "2025-04-20T19:11:19.8632462+02:00"
+  },
+  {
+    "CryptoCurrencyId": 40,
+    "CryptoCurrencyName": "Ethereum",
+    "Symbol": "ETH",
+    "Price": 1817.98,
+    "OldPrice": 1816.02,
+    "Amount": 1195,
+    "Date": "2025-04-20T19:11:19.8706291+02:00"
+  },
+  {
+    "CryptoCurrencyId": 41,
+    "CryptoCurrencyName": "Tether",
+    "Symbol": "USDT",
+    "Price": 1,
+    "OldPrice": 1,
+    "Amount": 500000,
+    "Date": "2025-04-20T19:11:19.9799852+02:00"
+  },
+  {
+    "CryptoCurrencyId": 42,
+    "CryptoCurrencyName": "Binance Coin",
+    "Symbol": "BNB",
+    "Price": 434.25,
+    "OldPrice": 433.61,
+    "Amount": 1800,
+    "Date": "2025-04-20T19:11:19.9855592+02:00"
+  },
+  {
+    "CryptoCurrencyId": 43,
+    "CryptoCurrencyName": "Solana",
+    "Symbol": "SOL",
+    "Price": 151.45,
+    "OldPrice": 151.51,
+    "Amount": 1200,
+    "Date": "2025-04-20T19:11:19.9975527+02:00"
+  },
+  {
+    "CryptoCurrencyId": 44,
+    "CryptoCurrencyName": "Ripple",
+    "Symbol": "XRP",
+    "Price": 1.5,
+    "OldPrice": 1.5,
+    "Amount": 2996,
+    "Date": "2025-04-20T19:11:20.0085945+02:00"
+  },
+  {
+    "CryptoCurrencyId": 45,
+    "CryptoCurrencyName": "Cardano",
+    "Symbol": "ADA",
+    "Price": 0.9,
+    "OldPrice": 0.9,
+    "Amount": 3500,
+    "Date": "2025-04-20T19:11:20.020074+02:00"
+  },
+  {
+    "CryptoCurrencyId": 46,
+    "CryptoCurrencyName": "Dodgecoin",
+    "Symbol": "DOGE",
+    "Price": 0.1,
+    "OldPrice": 0.1,
+    "Amount": 4500,
+    "Date": "2025-04-20T19:11:20.0574351+02:00"
+  },
+  {
+    "CryptoCurrencyId": 47,
+    "CryptoCurrencyName": "Polkadot",
+    "Symbol": "DOT",
+    "Price": 40.41,
+    "OldPrice": 40.42,
+    "Amount": 1600,
+    "Date": "2025-04-20T19:11:20.062939+02:00"
+  },
+  {
+    "CryptoCurrencyId": 48,
+    "CryptoCurrencyName": "Avalanche",
+    "Symbol": "AVAX",
+    "Price": 80.68,
+    "OldPrice": 80.68,
+    "Amount": 1000,
+    "Date": "2025-04-20T19:11:20.0740902+02:00"
+  },
+  {
+    "CryptoCurrencyId": 49,
+    "CryptoCurrencyName": "Tron",
+    "Symbol": "TRX",
+    "Price": 0.07,
+    "OldPrice": 0.07,
+    "Amount": 2500,
+    "Date": "2025-04-20T19:11:20.085985+02:00"
+  },
+  {
+    "CryptoCurrencyId": 50,
+    "CryptoCurrencyName": "Litecoin",
+    "Symbol": "LTC",
+    "Price": 202.06,
+    "OldPrice": 201.98,
+    "Amount": 1700,
+    "Date": "2025-04-20T19:11:20.0974396+02:00"
+  },
+  {
+    "CryptoCurrencyId": 51,
+    "CryptoCurrencyName": "Chainlink",
+    "Symbol": "LINK",
+    "Price": 25.27,
+    "OldPrice": 25.28,
+    "Amount": 2100,
+    "Date": "2025-04-20T19:11:20.1085286+02:00"
+  },
+  {
+    "CryptoCurrencyId": 52,
+    "CryptoCurrencyName": "Shiba Inu",
+    "Symbol": "SHIB",
+    "Price": 0,
+    "OldPrice": 0,
+    "Amount": 100000000,
+    "Date": "2025-04-20T19:11:20.1197771+02:00"
+  },
+  {
+    "CryptoCurrencyId": 53,
+    "CryptoCurrencyName": "Uniswap",
+    "Symbol": "UNI",
+    "Price": 2006.97,
+    "OldPrice": 2005.61,
+    "Amount": 1300,
+    "Date": "2025-04-20T19:11:20.1311933+02:00"
+  },
+  {
+    "CryptoCurrencyId": 54,
+    "CryptoCurrencyName": "Binzo",
+    "Symbol": "BRR",
+    "Price": 1009.69,
+    "OldPrice": 1009.13,
+    "Amount": 1000,
+    "Date": "2025-04-20T19:11:20.1435671+02:00"
+  },
+  {
+    "CryptoCurrencyId": 39,
+    "CryptoCurrencyName": "Bitcoin",
+    "Symbol": "BTC",
+    "Price": 29564.21,
+    "OldPrice": 29531.52,
+    "Amount": 1500,
+    "Date": "2025-04-20T19:12:20.1637266+02:00"
+  },
+  {
+    "CryptoCurrencyId": 40,
+    "CryptoCurrencyName": "Ethereum",
+    "Symbol": "ETH",
+    "Price": 1818.93,
+    "OldPrice": 1817.98,
+    "Amount": 1195,
+    "Date": "2025-04-20T19:12:20.1720949+02:00"
+  },
+  {
+    "CryptoCurrencyId": 41,
+    "CryptoCurrencyName": "Tether",
+    "Symbol": "USDT",
+    "Price": 1,
+    "OldPrice": 1,
+    "Amount": 500000,
+    "Date": "2025-04-20T19:12:20.1849456+02:00"
+  },
+  {
+    "CryptoCurrencyId": 42,
+    "CryptoCurrencyName": "Binance Coin",
+    "Symbol": "BNB",
+    "Price": 434.41,
+    "OldPrice": 434.25,
+    "Amount": 1800,
+    "Date": "2025-04-20T19:12:20.1977392+02:00"
+  },
+  {
+    "CryptoCurrencyId": 43,
+    "CryptoCurrencyName": "Solana",
+    "Symbol": "SOL",
+    "Price": 151.58,
+    "OldPrice": 151.45,
+    "Amount": 1200,
+    "Date": "2025-04-20T19:12:20.2108155+02:00"
+  },
+  {
+    "CryptoCurrencyId": 44,
+    "CryptoCurrencyName": "Ripple",
+    "Symbol": "XRP",
+    "Price": 1.5,
+    "OldPrice": 1.5,
+    "Amount": 2996,
+    "Date": "2025-04-20T19:12:20.2233353+02:00"
+  },
+  {
+    "CryptoCurrencyId": 45,
+    "CryptoCurrencyName": "Cardano",
+    "Symbol": "ADA",
+    "Price": 0.9,
+    "OldPrice": 0.9,
+    "Amount": 3500,
+    "Date": "2025-04-20T19:12:20.2368846+02:00"
+  },
+  {
+    "CryptoCurrencyId": 46,
+    "CryptoCurrencyName": "Dodgecoin",
+    "Symbol": "DOGE",
+    "Price": 0.1,
+    "OldPrice": 0.1,
+    "Amount": 4500,
+    "Date": "2025-04-20T19:12:20.2505444+02:00"
+  },
+  {
+    "CryptoCurrencyId": 47,
+    "CryptoCurrencyName": "Polkadot",
+    "Symbol": "DOT",
+    "Price": 40.42,
+    "OldPrice": 40.41,
+    "Amount": 1600,
+    "Date": "2025-04-20T19:12:20.2640811+02:00"
+  },
+  {
+    "CryptoCurrencyId": 48,
+    "CryptoCurrencyName": "Avalanche",
+    "Symbol": "AVAX",
+    "Price": 80.74,
+    "OldPrice": 80.68,
+    "Amount": 1000,
+    "Date": "2025-04-20T19:12:20.2770789+02:00"
+  },
+  {
+    "CryptoCurrencyId": 49,
+    "CryptoCurrencyName": "Tron",
+    "Symbol": "TRX",
+    "Price": 0.07,
+    "OldPrice": 0.07,
+    "Amount": 2500,
+    "Date": "2025-04-20T19:12:20.2992819+02:00"
+  },
+  {
+    "CryptoCurrencyId": 50,
+    "CryptoCurrencyName": "Litecoin",
+    "Symbol": "LTC",
+    "Price": 202.05,
+    "OldPrice": 202.06,
+    "Amount": 1700,
+    "Date": "2025-04-20T19:12:20.3135526+02:00"
+  },
+  {
+    "CryptoCurrencyId": 51,
+    "CryptoCurrencyName": "Chainlink",
+    "Symbol": "LINK",
+    "Price": 25.28,
+    "OldPrice": 25.27,
+    "Amount": 2100,
+    "Date": "2025-04-20T19:12:20.3284055+02:00"
+  },
+  {
+    "CryptoCurrencyId": 52,
+    "CryptoCurrencyName": "Shiba Inu",
+    "Symbol": "SHIB",
+    "Price": 0,
+    "OldPrice": 0,
+    "Amount": 100000000,
+    "Date": "2025-04-20T19:12:20.3428802+02:00"
+  },
+  {
+    "CryptoCurrencyId": 53,
+    "CryptoCurrencyName": "Uniswap",
+    "Symbol": "UNI",
+    "Price": 2008.97,
+    "OldPrice": 2006.97,
+    "Amount": 1300,
+    "Date": "2025-04-20T19:12:20.3567831+02:00"
+  },
+  {
+    "CryptoCurrencyId": 54,
+    "CryptoCurrencyName": "Binzo",
+    "Symbol": "BRR",
+    "Price": 1009.51,
+    "OldPrice": 1009.69,
+    "Amount": 1000,
+    "Date": "2025-04-20T19:12:20.3711884+02:00"
+  },
+  {
+    "CryptoCurrencyId": 39,
+    "CryptoCurrencyName": "Bitcoin",
+    "Symbol": "BTC",
+    "Price": 29565.31,
+    "OldPrice": 29564.21,
+    "Amount": 1500,
+    "Date": "2025-04-20T19:13:42.1925516+02:00"
+  },
+  {
+    "CryptoCurrencyId": 40,
+    "CryptoCurrencyName": "Ethereum",
+    "Symbol": "ETH",
+    "Price": 1821.1,
+    "OldPrice": 1818.93,
+    "Amount": 1195,
+    "Date": "2025-04-20T19:13:42.453391+02:00"
+  },
+  {
+    "CryptoCurrencyId": 41,
+    "CryptoCurrencyName": "Tether",
+    "Symbol": "USDT",
+    "Price": 1,
+    "OldPrice": 1,
+    "Amount": 500000,
+    "Date": "2025-04-20T19:13:42.4603159+02:00"
+  },
+  {
+    "CryptoCurrencyId": 42,
+    "CryptoCurrencyName": "Binance Coin",
+    "Symbol": "BNB",
+    "Price": 434.74,
+    "OldPrice": 434.41,
+    "Amount": 1800,
+    "Date": "2025-04-20T19:13:42.4726309+02:00"
+  },
+  {
+    "CryptoCurrencyId": 43,
+    "CryptoCurrencyName": "Solana",
+    "Symbol": "SOL",
+    "Price": 151.73,
+    "OldPrice": 151.58,
+    "Amount": 1200,
+    "Date": "2025-04-20T19:13:42.5086521+02:00"
+  },
+  {
+    "CryptoCurrencyId": 44,
+    "CryptoCurrencyName": "Ripple",
+    "Symbol": "XRP",
+    "Price": 1.5,
+    "OldPrice": 1.5,
+    "Amount": 2996,
+    "Date": "2025-04-20T19:13:42.5396872+02:00"
+  },
+  {
+    "CryptoCurrencyId": 45,
+    "CryptoCurrencyName": "Cardano",
+    "Symbol": "ADA",
+    "Price": 0.9,
+    "OldPrice": 0.9,
+    "Amount": 3500,
+    "Date": "2025-04-20T19:13:42.572526+02:00"
+  },
+  {
+    "CryptoCurrencyId": 46,
+    "CryptoCurrencyName": "Dodgecoin",
+    "Symbol": "DOGE",
+    "Price": 0.1,
+    "OldPrice": 0.1,
+    "Amount": 4500,
+    "Date": "2025-04-20T19:13:42.5787786+02:00"
+  },
+  {
+    "CryptoCurrencyId": 47,
+    "CryptoCurrencyName": "Polkadot",
+    "Symbol": "DOT",
+    "Price": 40.42,
+    "OldPrice": 40.42,
+    "Amount": 1600,
+    "Date": "2025-04-20T19:13:42.6185132+02:00"
+  },
+  {
+    "CryptoCurrencyId": 48,
+    "CryptoCurrencyName": "Avalanche",
+    "Symbol": "AVAX",
+    "Price": 80.78,
+    "OldPrice": 80.74,
+    "Amount": 1000,
+    "Date": "2025-04-20T19:13:42.6267275+02:00"
+  },
+  {
+    "CryptoCurrencyId": 49,
+    "CryptoCurrencyName": "Tron",
+    "Symbol": "TRX",
+    "Price": 0.07,
+    "OldPrice": 0.07,
+    "Amount": 2500,
+    "Date": "2025-04-20T19:13:42.6588251+02:00"
+  },
+  {
+    "CryptoCurrencyId": 50,
+    "CryptoCurrencyName": "Litecoin",
+    "Symbol": "LTC",
+    "Price": 202.15,
+    "OldPrice": 202.05,
+    "Amount": 1700,
+    "Date": "2025-04-20T19:13:42.665566+02:00"
+  },
+  {
+    "CryptoCurrencyId": 51,
+    "CryptoCurrencyName": "Chainlink",
+    "Symbol": "LINK",
+    "Price": 25.3,
+    "OldPrice": 25.28,
+    "Amount": 2100,
+    "Date": "2025-04-20T19:13:42.7023275+02:00"
+  },
+  {
+    "CryptoCurrencyId": 52,
+    "CryptoCurrencyName": "Shiba Inu",
+    "Symbol": "SHIB",
+    "Price": 0,
+    "OldPrice": 0,
+    "Amount": 100000000,
+    "Date": "2025-04-20T19:13:42.7110022+02:00"
+  },
+  {
+    "CryptoCurrencyId": 53,
+    "CryptoCurrencyName": "Uniswap",
+    "Symbol": "UNI",
+    "Price": 2010.57,
+    "OldPrice": 2008.97,
+    "Amount": 1300,
+    "Date": "2025-04-20T19:13:42.7265289+02:00"
+  },
+  {
+    "CryptoCurrencyId": 54,
+    "CryptoCurrencyName": "Binzo",
+    "Symbol": "BRR",
+    "Price": 1010.29,
+    "OldPrice": 1009.51,
+    "Amount": 1000,
+    "Date": "2025-04-20T19:13:42.7410236+02:00"
+  },
+  {
+    "CryptoCurrencyId": 39,
+    "CryptoCurrencyName": "Bitcoin",
+    "Symbol": "BTC",
+    "Price": 29603.56,
+    "OldPrice": 29565.31,
+    "Amount": 1500,
+    "Date": "2025-04-20T19:14:42.7931434+02:00"
+  },
+  {
+    "CryptoCurrencyId": 40,
+    "CryptoCurrencyName": "Ethereum",
+    "Symbol": "ETH",
+    "Price": 1821.51,
+    "OldPrice": 1821.1,
+    "Amount": 1195,
+    "Date": "2025-04-20T19:14:42.8013461+02:00"
+  },
+  {
+    "CryptoCurrencyId": 41,
+    "CryptoCurrencyName": "Tether",
+    "Symbol": "USDT",
+    "Price": 1,
+    "OldPrice": 1,
+    "Amount": 500000,
+    "Date": "2025-04-20T19:14:42.8160119+02:00"
+  },
+  {
+    "CryptoCurrencyId": 42,
+    "CryptoCurrencyName": "Binance Coin",
+    "Symbol": "BNB",
+    "Price": 434.7,
+    "OldPrice": 434.74,
+    "Amount": 1800,
+    "Date": "2025-04-20T19:14:42.8296916+02:00"
+  },
+  {
+    "CryptoCurrencyId": 43,
+    "CryptoCurrencyName": "Solana",
+    "Symbol": "SOL",
+    "Price": 151.92,
+    "OldPrice": 151.73,
+    "Amount": 1200,
+    "Date": "2025-04-20T19:14:42.864162+02:00"
+  },
+  {
+    "CryptoCurrencyId": 44,
+    "CryptoCurrencyName": "Ripple",
+    "Symbol": "XRP",
+    "Price": 1.5,
+    "OldPrice": 1.5,
+    "Amount": 2996,
+    "Date": "2025-04-20T19:14:42.8701822+02:00"
+  },
+  {
+    "CryptoCurrencyId": 45,
+    "CryptoCurrencyName": "Cardano",
+    "Symbol": "ADA",
+    "Price": 0.9,
+    "OldPrice": 0.9,
+    "Amount": 3500,
+    "Date": "2025-04-20T19:14:42.8820756+02:00"
+  },
+  {
+    "CryptoCurrencyId": 46,
+    "CryptoCurrencyName": "Dodgecoin",
+    "Symbol": "DOGE",
+    "Price": 0.1,
+    "OldPrice": 0.1,
+    "Amount": 4500,
+    "Date": "2025-04-20T19:14:42.8939187+02:00"
+  },
+  {
+    "CryptoCurrencyId": 47,
+    "CryptoCurrencyName": "Polkadot",
+    "Symbol": "DOT",
+    "Price": 40.45,
+    "OldPrice": 40.42,
+    "Amount": 1600,
+    "Date": "2025-04-20T19:14:42.9058379+02:00"
+  },
+  {
+    "CryptoCurrencyId": 48,
+    "CryptoCurrencyName": "Avalanche",
+    "Symbol": "AVAX",
+    "Price": 80.75,
+    "OldPrice": 80.78,
+    "Amount": 1000,
+    "Date": "2025-04-20T19:14:42.918411+02:00"
+  },
+  {
+    "CryptoCurrencyId": 49,
+    "CryptoCurrencyName": "Tron",
+    "Symbol": "TRX",
+    "Price": 0.07,
+    "OldPrice": 0.07,
+    "Amount": 2500,
+    "Date": "2025-04-20T19:14:42.9316412+02:00"
+  },
+  {
+    "CryptoCurrencyId": 50,
+    "CryptoCurrencyName": "Litecoin",
+    "Symbol": "LTC",
+    "Price": 202.33,
+    "OldPrice": 202.15,
+    "Amount": 1700,
+    "Date": "2025-04-20T19:14:42.944047+02:00"
+  },
+  {
+    "CryptoCurrencyId": 51,
+    "CryptoCurrencyName": "Chainlink",
+    "Symbol": "LINK",
+    "Price": 25.32,
+    "OldPrice": 25.3,
+    "Amount": 2100,
+    "Date": "2025-04-20T19:14:42.9560429+02:00"
+  },
+  {
+    "CryptoCurrencyId": 52,
+    "CryptoCurrencyName": "Shiba Inu",
+    "Symbol": "SHIB",
+    "Price": 1001.14,
+    "OldPrice": 1000,
+    "Amount": 100000000,
+    "Date": "2025-04-20T19:14:42.969531+02:00"
+  },
+  {
+    "CryptoCurrencyId": 53,
+    "CryptoCurrencyName": "Uniswap",
+    "Symbol": "UNI",
+    "Price": 2011.85,
+    "OldPrice": 2010.57,
+    "Amount": 1300,
+    "Date": "2025-04-20T19:14:42.9826054+02:00"
+  },
+  {
+    "CryptoCurrencyId": 54,
+    "CryptoCurrencyName": "Binzo",
+    "Symbol": "BRR",
+    "Price": 1010.95,
+    "OldPrice": 1010.29,
+    "Amount": 1000,
+    "Date": "2025-04-20T19:14:42.9949132+02:00"
+  },
+  {
+    "CryptoCurrencyId": 39,
+    "CryptoCurrencyName": "Bitcoin",
+    "Symbol": "BTC",
+    "Price": 29592.66,
+    "OldPrice": 29603.56,
+    "Amount": 1500,
+    "Date": "2025-04-20T19:15:43.0154989+02:00"
+  },
+  {
+    "CryptoCurrencyId": 40,
+    "CryptoCurrencyName": "Ethereum",
+    "Symbol": "ETH",
+    "Price": 1821.5,
+    "OldPrice": 1821.51,
+    "Amount": 1195,
+    "Date": "2025-04-20T19:15:43.0233441+02:00"
+  },
+  {
+    "CryptoCurrencyId": 41,
+    "CryptoCurrencyName": "Tether",
+    "Symbol": "USDT",
+    "Price": 1,
+    "OldPrice": 1,
+    "Amount": 500000,
+    "Date": "2025-04-20T19:15:43.119407+02:00"
+  },
+  {
+    "CryptoCurrencyId": 42,
+    "CryptoCurrencyName": "Binance Coin",
+    "Symbol": "BNB",
+    "Price": 435.27,
+    "OldPrice": 434.7,
+    "Amount": 1800,
+    "Date": "2025-04-20T19:15:43.1250889+02:00"
+  },
+  {
+    "CryptoCurrencyId": 43,
+    "CryptoCurrencyName": "Solana",
+    "Symbol": "SOL",
+    "Price": 152.03,
+    "OldPrice": 151.92,
+    "Amount": 1200,
+    "Date": "2025-04-20T19:15:43.137022+02:00"
+  },
+  {
+    "CryptoCurrencyId": 44,
+    "CryptoCurrencyName": "Ripple",
+    "Symbol": "XRP",
+    "Price": 1.5,
+    "OldPrice": 1.5,
+    "Amount": 2996,
+    "Date": "2025-04-20T19:15:43.1483678+02:00"
+  },
+  {
+    "CryptoCurrencyId": 45,
+    "CryptoCurrencyName": "Cardano",
+    "Symbol": "ADA",
+    "Price": 0.9,
+    "OldPrice": 0.9,
+    "Amount": 3500,
+    "Date": "2025-04-20T19:15:43.1600161+02:00"
+  },
+  {
+    "CryptoCurrencyId": 46,
+    "CryptoCurrencyName": "Dodgecoin",
+    "Symbol": "DOGE",
+    "Price": 0.1,
+    "OldPrice": 0.1,
+    "Amount": 4500,
+    "Date": "2025-04-20T19:15:43.1718389+02:00"
+  },
+  {
+    "CryptoCurrencyId": 47,
+    "CryptoCurrencyName": "Polkadot",
+    "Symbol": "DOT",
+    "Price": 40.46,
+    "OldPrice": 40.45,
+    "Amount": 1600,
+    "Date": "2025-04-20T19:15:43.183612+02:00"
+  },
+  {
+    "CryptoCurrencyId": 48,
+    "CryptoCurrencyName": "Avalanche",
+    "Symbol": "AVAX",
+    "Price": 80.85,
+    "OldPrice": 80.75,
+    "Amount": 1000,
+    "Date": "2025-04-20T19:15:43.1958048+02:00"
+  },
+  {
+    "CryptoCurrencyId": 49,
+    "CryptoCurrencyName": "Tron",
+    "Symbol": "TRX",
+    "Price": 0.07,
+    "OldPrice": 0.07,
+    "Amount": 2500,
+    "Date": "2025-04-20T19:15:43.2076025+02:00"
+  },
+  {
+    "CryptoCurrencyId": 50,
+    "CryptoCurrencyName": "Litecoin",
+    "Symbol": "LTC",
+    "Price": 202.47,
+    "OldPrice": 202.33,
+    "Amount": 1700,
+    "Date": "2025-04-20T19:15:43.2197351+02:00"
+  },
+  {
+    "CryptoCurrencyId": 51,
+    "CryptoCurrencyName": "Chainlink",
+    "Symbol": "LINK",
+    "Price": 25.31,
+    "OldPrice": 25.32,
+    "Amount": 2100,
+    "Date": "2025-04-20T19:15:43.2321308+02:00"
+  },
+  {
+    "CryptoCurrencyId": 52,
+    "CryptoCurrencyName": "Shiba Inu",
+    "Symbol": "SHIB",
+    "Price": 1001.2,
+    "OldPrice": 1001.14,
+    "Amount": 100000000,
+    "Date": "2025-04-20T19:15:43.2441017+02:00"
+  },
+  {
+    "CryptoCurrencyId": 53,
+    "CryptoCurrencyName": "Uniswap",
+    "Symbol": "UNI",
+    "Price": 2013.97,
+    "OldPrice": 2011.85,
+    "Amount": 1300,
+    "Date": "2025-04-20T19:15:43.2560899+02:00"
+  },
+  {
+    "CryptoCurrencyId": 54,
+    "CryptoCurrencyName": "Binzo",
+    "Symbol": "BRR",
+    "Price": 1011.9,
+    "OldPrice": 1010.95,
+    "Amount": 1000,
+    "Date": "2025-04-20T19:15:43.2680125+02:00"
+  }
+]
