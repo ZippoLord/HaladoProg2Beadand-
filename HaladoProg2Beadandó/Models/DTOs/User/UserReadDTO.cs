@@ -1,4 +1,4 @@
-﻿namespace HaladoProg2Beadandó.Models.DTOs
+﻿namespace HaladoProg2Beadandó.Models.DTOs.User
 {
     public class UserReadDTO
     {

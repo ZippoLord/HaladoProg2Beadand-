@@ -1,7 +1,10 @@
 ﻿using HaladoProg2Beadandó.Data;
+using HaladoProg2Beadandó.Models;
 using HaladoProg2Beadandó.Models.DTOs;
+using HaladoProg2Beadandó.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace HaladoProg2Beadandó.Controllers
 {
@@ -10,7 +13,11 @@ namespace HaladoProg2Beadandó.Controllers
     public class CryptoPriceChangeController : DataContextController
     {
 
-        public CryptoPriceChangeController(DataContext context) : base(context) { }
+        private readonly CryptoChangeLogService _log;   
+        public CryptoPriceChangeController(DataContext context, CryptoChangeLogService log) : base(context) {
+
+            _log = log;
+        }
 
         [HttpPut("price")]
         public async Task<IActionResult> ManualCryptoPrice([FromBody] ModifyCryptoPriceDTO dto)
@@ -24,9 +31,13 @@ namespace HaladoProg2Beadandó.Controllers
         }
 
         [HttpGet("price/history/{cryptoId}")]
-        public async Task<IActionResult> LogCryptoChange()
+        public async Task<IActionResult> LogCryptoChange(int cryptoId)
         {
-
+            var cryptos = _log.AllLogs();
+            if (cryptos == null || !cryptos.Any(x => x.CryptoCurrencyId == cryptoId))
+                return NotFound("Nincs ilyen id-jű kriptovaluta");
+            var result = cryptos.Where(x => x.CryptoCurrencyId == cryptoId).ToList();
+            return Ok(result);
         }
     }
 }

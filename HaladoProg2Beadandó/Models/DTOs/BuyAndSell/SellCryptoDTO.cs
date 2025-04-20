@@ -1,10 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 
-namespace HaladoProg2Beadandó.Models.DTOs
+namespace HaladoProg2Beadandó.Models.DTOs.BuyAndSell
 {
     public class SellCryptoDTO
     {
-        public string Symbol { get; set; }
+        private string _symbol;
+        public string Symbol
+        {
+            get => _symbol;
+            set => _symbol = value?.ToUpper();
+        }
         public string CryptoCurrencyName { get; set; }
         public double AmountToSell { get; set; }
     }

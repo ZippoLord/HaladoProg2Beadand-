@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Http;
 using HaladoProg2Beadandó.Models;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using HaladoProg2Beadandó.Models.DTOs;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using AutoMapper;
+using HaladoProg2Beadandó.Models.DTOs.CryptoCurrency;
 
 namespace HaladoProg2Beadandó.Controllers
 {
@@ -41,10 +41,16 @@ namespace HaladoProg2Beadandó.Controllers
 
 
 
-        [HttpPut("cryptos")]
+        [HttpPost("cryptos")]
 
         public async Task<IActionResult> AddCrypto([FromBody] CryptoCurrencyDTO cryptoCurrencyDTO)
         {
+            bool alreadyExists = await _context.CryptoCurrencies
+            .AnyAsync(c => c.Symbol == cryptoCurrencyDTO.Symbol || c.CryptoCurrencyName == cryptoCurrencyDTO.CryptoCurrencyName);
+
+            if (alreadyExists)
+                return BadRequest("Ez a kriptovaluta már létezik.");
+
             var crypto = mapper.Map<CryptoCurrency>(cryptoCurrencyDTO);
             _context.CryptoCurrencies.Add(crypto);
             await _context.SaveChangesAsync();

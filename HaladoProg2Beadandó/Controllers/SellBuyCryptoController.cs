@@ -5,15 +5,21 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using System.Text.Json;
+using HaladoProg2Beadandó.Services;
+using HaladoProg2Beadandó.Models.DTOs.BuyAndSell;
+using HaladoProg2Beadandó.Models.DTOs.Wallet;
 
 namespace HaladoProg2Beadandó.Controllers
 {
     [Route("api/trade")]
     [ApiController]
-    public class CryptoController : DataContextController
+    public class SellBuyCryptoController : DataContextController
     {
         private readonly IMapper mapper;
-        public CryptoController(DataContext context, IMapper mapper) : base(context) {
+        private readonly TransactionLogService _logService;
+        public SellBuyCryptoController(DataContext context, IMapper mapper, TransactionLogService logService) : base(context) {
+            _logService = logService;
             this.mapper = mapper;
         }
 
@@ -21,6 +27,10 @@ namespace HaladoProg2Beadandó.Controllers
         [HttpPost("buy")]
         public async Task<IActionResult> BuyCrypto(int userId, [FromBody] BuyCryptoDTO dto)
         {
+ 
+
+            var transactions = _logService.AllLogs();
+
             var user = await _context.Users
                 .Include(u => u.VirtualWallet)
                 .ThenInclude(w => w.CryptoAssets)
@@ -65,6 +75,17 @@ namespace HaladoProg2Beadandó.Controllers
                 };
                 _context.CryptoAssets.Add(newAsset);
             }
+            var logEntry = new TransactionDTO
+            {
+                UserId = userId,
+                Symbol = dto.Symbol,
+                CryptoCurrencyName = dto.CryptoCurrencyName,
+                Amount = dto.AmountToBuy,
+                Price = totalCost,
+                Date = DateTime.UtcNow,
+                Status = "buy"
+            };
+            _logService.AddLog(logEntry);
 
             await _context.SaveChangesAsync();
             return Ok("Sikeres vásárlás");
@@ -74,7 +95,8 @@ namespace HaladoProg2Beadandó.Controllers
         [HttpPost("sell")]
         public async Task<IActionResult> SellCrypto(int userId,[FromBody] SellCryptoDTO dto)
             {
-                var user = await _context.Users
+            var transactions = _logService.AllLogs();   
+            var user = await _context.Users
                .Include(u => u.VirtualWallet)
                .ThenInclude(w => w.CryptoAssets)
                .FirstOrDefaultAsync(u => u.UserId == userId);
@@ -98,20 +120,40 @@ namespace HaladoProg2Beadandó.Controllers
                  cryptoAsset.Price -= totalSale;
                  crypto.Amount += dto.AmountToSell;
                  if (cryptoAsset.Amount == 0)
-                _context.CryptoAssets.Remove(cryptoAsset);
+                _context.CryptoAssets.Remove(cryptoAsset); 
+                user.VirtualWallet.Amount += totalSale;
 
-                // Növeld a felhasználó pénztárcájának egyenlegét
-                 user.VirtualWallet.Amount += totalSale;
-
-
-
-
-
+            var LogEntry = new TransactionDTO
+            {
+                UserId = userId,
+                Symbol = dto.Symbol,
+                CryptoCurrencyName = dto.CryptoCurrencyName,
+                Amount = dto.AmountToSell,
+                Price = totalSale,
+                Date = DateTime.UtcNow,
+                Status = "sell"
+            };
+            _logService.AddLog(LogEntry);
             await _context.SaveChangesAsync();
             return Ok("Sikeres eladás");
             }
 
 
-        //TODO PORTFOLIO
+
+        [HttpGet("portfolio/{userId}")]
+
+        public async Task<IActionResult> Portfolio(int userId)
+        {
+            var portfolio = await _context.VirtualWallets
+            .Include(w => w.CryptoAssets)
+            .FirstOrDefaultAsync(w => w.UserId == userId);
+
+            if (portfolio == null)
+                return NotFound("Nem található portfolio ezzel a user Id-vel.");
+
+            var walletDto = mapper.Map<GetWalletDTO>(portfolio);
+            return Ok(walletDto);
+        }
+
     }
 }

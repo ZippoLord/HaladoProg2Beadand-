@@ -5,10 +5,10 @@ namespace HaladoProg2Beadandó.Data
 {
     public class DataContext : DbContext
     {
-       public DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<VirtualWallet> VirtualWallets { get; set; }
 
-        public DbSet<CryptoCurrency> CryptoCurrencies { get; set;  }
+        public DbSet<CryptoCurrency> CryptoCurrencies { get; set; }
 
         public DbSet<CryptoAsset> CryptoAssets { get; set; }
 
@@ -27,14 +27,12 @@ namespace HaladoProg2Beadandó.Data
 
             modelBuilder.Entity<CryptoAsset>().ToTable("CryptoAssets");
             modelBuilder.Entity<CryptoAsset>()
-                .HasOne(ca => ca.VirtualWallet) 
-                .WithMany(vw => vw.CryptoAssets) 
+                .HasOne(ca => ca.VirtualWallet)
+                .WithMany(vw => vw.CryptoAssets)
                 .HasForeignKey(ca => ca.VirtualWalletId);
 
             modelBuilder.Entity<CryptoCurrency>().ToTable("CryptoCurrencies");
         }
 
-
     }
-
-}
+    }

@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using HaladoProg2Beadandó.Data;
 using Microsoft.EntityFrameworkCore;
-using HaladoProg2Beadandó.Models.DTOs;
 using HaladoProg2Beadandó.Models;
 using AutoMapper;
+using HaladoProg2Beadandó.Models.DTOs.Wallet;
 
 
 
@@ -30,7 +30,7 @@ namespace HaladoProg2Beadandó.Controllers
             .FirstOrDefaultAsync(w => w.UserId == userId);
 
             if (wallet == null)
-                return NotFound("Nem található pénztárca ezzel a userId-vel.");
+                return NotFound("Nem található pénztárca ezzel a user Id-vel.");
 
             var walletDto = mapper.Map<GetWalletDTO>(wallet);
             return Ok(walletDto);

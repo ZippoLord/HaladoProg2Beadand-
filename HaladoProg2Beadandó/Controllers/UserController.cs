@@ -4,8 +4,8 @@ using HaladoProg2Beadandó.Data;
 using HaladoProg2Beadandó.Models;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using HaladoProg2Beadandó.Models.DTOs;
 using AutoMapper;
+using HaladoProg2Beadandó.Models.DTOs.User;
 
 namespace HaladoProg2Beadandó.Controllers
 {
@@ -69,7 +69,6 @@ namespace HaladoProg2Beadandó.Controllers
             var existedEmail = await _context.Users.FirstOrDefaultAsync(u => u.Email == userDTO.Email);
             if(existedEmail != null) 
                 return BadRequest("Ez az email cím már foglalt");
-
 
             result.Name = userDTO.Name;
             result.Email = userDTO.Email;

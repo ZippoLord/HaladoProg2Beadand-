@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
-namespace HaladoProg2Beadandó.Models.DTOs
+namespace HaladoProg2Beadandó.Models.DTOs.User
 {
     public class UserRegisterDTO
     {

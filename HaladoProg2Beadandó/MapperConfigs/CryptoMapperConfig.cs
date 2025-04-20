@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HaladoProg2Beadandó.Models.DTOs.CryptoCurrency;
 
 namespace HaladoProg2Beadandó.MapperConfigs
 {
@@ -6,7 +7,7 @@ namespace HaladoProg2Beadandó.MapperConfigs
     {
         public CryptoMapperConfig()
         {
-            CreateMap<Models.CryptoCurrency, Models.DTOs.CryptoCurrencyDTO>().ReverseMap();
+            CreateMap<Models.CryptoCurrency, CryptoCurrencyDTO>().ReverseMap();
         }
     
     }
