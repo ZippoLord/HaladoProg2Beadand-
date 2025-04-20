@@ -1,0 +1,102 @@
+[
+  {
+    "TransactionId": 1,
+    "UserId": 10,
+    "Symbol": "BTC",
+    "CryptoCurrencyName": "Bitcoin",
+    "Amount": 0.25,
+    "Price": 7514.245,
+    "Date": "2025-04-20T18:33:31.1482626Z",
+    "Status": "sell"
+  },
+  {
+    "TransactionId": 2,
+    "UserId": 10,
+    "Symbol": "BTC",
+    "CryptoCurrencyName": "Bitcoin",
+    "Amount": 0.25,
+    "Price": 7528.8925,
+    "Date": "2025-04-20T18:37:55.8484181Z",
+    "Status": "buy"
+  },
+  {
+    "TransactionId": 3,
+    "UserId": 10,
+    "Symbol": "BTC",
+    "CryptoCurrencyName": "Bitcoin",
+    "Amount": 0.25,
+    "Price": 7532.6475,
+    "Date": "2025-04-20T18:38:51.2779011Z",
+    "Status": "sell"
+  },
+  {
+    "TransactionId": 4,
+    "UserId": 10,
+    "Symbol": "BTC",
+    "CryptoCurrencyName": "Bitcoin",
+    "Amount": 0.2,
+    "Price": 6027.642,
+    "Date": "2025-04-20T18:39:48.2710251Z",
+    "Status": "buy"
+  },
+  {
+    "TransactionId": 5,
+    "UserId": 10,
+    "Symbol": "BTC",
+    "CryptoCurrencyName": "Bitcoin",
+    "Amount": 0.2,
+    "Price": 6027.642,
+    "Date": "2025-04-20T18:40:07.468858Z",
+    "Status": "sell"
+  },
+  {
+    "TransactionId": 6,
+    "UserId": 10,
+    "Symbol": "XRP",
+    "CryptoCurrencyName": "Ripple",
+    "Amount": 4,
+    "Price": 6,
+    "Date": "2025-04-20T18:45:01.3959277Z",
+    "Status": "sell"
+  },
+  {
+    "TransactionId": 7,
+    "UserId": 10,
+    "Symbol": "BTC",
+    "CryptoCurrencyName": "Bitcoin",
+    "Amount": 0.2,
+    "Price": 6053.75,
+    "Date": "2025-04-20T19:34:01.1123004Z",
+    "Status": "buy"
+  },
+  {
+    "TransactionId": 8,
+    "UserId": 10,
+    "Symbol": "BTC",
+    "CryptoCurrencyName": "Bitcoin",
+    "Amount": 0.2,
+    "Price": 6057.826000000001,
+    "Date": "2025-04-20T19:34:42.3877355Z",
+    "Status": "sell"
+  },
+  {
+    "TransactionId": 9,
+    "UserId": 10,
+    "Symbol": "ETH",
+    "CryptoCurrencyName": "Ethereum",
+    "Amount": 6,
+    "Price": 11212.56,
+    "Date": "2025-04-20T19:35:01.5046628Z",
+    "Status": "sell"
+  },
+  {
+    "TransactionId": 10,
+    "UserId": 10,
+    "Symbol": "ETH",
+    "CryptoCurrencyName": "Ethereum",
+    "Amount": 1,
+    "Price": 1867.99,
+    "Date": "2025-04-20T19:35:39.4670698Z",
+    "Status": "buy"
+  }
+]

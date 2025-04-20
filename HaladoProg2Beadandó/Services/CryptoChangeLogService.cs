@@ -5,7 +5,7 @@ namespace HaladoProg2Beadandó.Services
 {
     public class CryptoChangeLogService
     {
-        private string log = "Logs/crypto_price_change_log.json";
+        private string log = "DataLogs/crypto_price_change_log.json";
         public List<CryptoLogDTO> AllLogs()
         {
             if (!File.Exists(log))

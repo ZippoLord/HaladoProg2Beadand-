@@ -5,7 +5,7 @@ namespace HaladoProg2Beadandó.Services
 {
     public class TransactionLogService
     {
-        private string log = "Logs/transaction_log.json";
+        private string log = "DataLogs/transaction_log.json";
         public List<TransactionDTO> AllLogs()
         {
             if (!File.Exists(log))

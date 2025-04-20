@@ -27,9 +27,7 @@ namespace HaladoProg2Beadandó.Controllers
         [HttpPost("buy")]
         public async Task<IActionResult> BuyCrypto(int userId, [FromBody] BuyCryptoDTO dto)
         {
- 
 
-            var transactions = _logService.AllLogs();
 
             var user = await _context.Users
                 .Include(u => u.VirtualWallet)
@@ -48,7 +46,7 @@ namespace HaladoProg2Beadandó.Controllers
             double totalCost = dto.AmountToBuy * crypto.Price;
 
             if (user.VirtualWallet.Amount < totalCost)
-                return BadRequest("Nincs elég pénz az egyenlegen");
+                return BadRequest("Nincs elég pénz az egyenlegen hogy ennyit vegyél");
 
             user.VirtualWallet.Amount -= totalCost;
             if (crypto.Amount < dto.AmountToBuy)
@@ -107,33 +105,41 @@ namespace HaladoProg2Beadandó.Controllers
                 var crypto = await _context.CryptoCurrencies
                     .FirstOrDefaultAsync(c => c.Symbol == dto.Symbol);
 
-                var cryptoAsset = user.VirtualWallet.CryptoAssets
-    .           FirstOrDefault(ca => ca.Symbol == dto.Symbol);
-
             if (crypto == null)
-                    return NotFound("Ilyen kriptovaluta nem létezik");
-             
-                 if (crypto.Amount < dto.AmountToSell)
+                return NotFound("Ilyen kriptovaluta nem létezik");
+            else
+            {
+                var cryptoAsset = user.VirtualWallet.CryptoAssets
+                .FirstOrDefault(ca => ca.Symbol == dto.Symbol);
+
+                if(cryptoAsset == null)
+                    return NotFound("Nincs ilyen kriptovaluta a Walletedben");
+
+                if (cryptoAsset.Amount < dto.AmountToSell)
                     return BadRequest("Nem tudsz ennyit eladni");
-                 cryptoAsset.Amount -= dto.AmountToSell;
-                 double totalSale = dto.AmountToSell * crypto.Price;
-                 cryptoAsset.Price -= totalSale;
-                 crypto.Amount += dto.AmountToSell;
-                 if (cryptoAsset.Amount == 0)
-                _context.CryptoAssets.Remove(cryptoAsset); 
+                cryptoAsset.Amount -= dto.AmountToSell;
+                double totalSale = dto.AmountToSell * crypto.Price;
+                cryptoAsset.Price -= totalSale;
+                crypto.Amount += dto.AmountToSell;
+                if (cryptoAsset.Amount == 0)
+                    _context.CryptoAssets.Remove(cryptoAsset);
                 user.VirtualWallet.Amount += totalSale;
 
-            var LogEntry = new TransactionDTO
-            {
-                UserId = userId,
-                Symbol = dto.Symbol,
-                CryptoCurrencyName = dto.CryptoCurrencyName,
-                Amount = dto.AmountToSell,
-                Price = totalSale,
-                Date = DateTime.UtcNow,
-                Status = "sell"
-            };
-            _logService.AddLog(LogEntry);
+                var LogEntry = new TransactionDTO
+                {
+                    UserId = userId,
+                    Symbol = dto.Symbol,
+                    CryptoCurrencyName = dto.CryptoCurrencyName,
+                    Amount = dto.AmountToSell,
+                    Price = totalSale,
+                    Date = DateTime.UtcNow,
+                    Status = "sell"
+                };
+
+                _logService.AddLog(LogEntry);
+
+            }
+
             await _context.SaveChangesAsync();
             return Ok("Sikeres eladás");
             }
