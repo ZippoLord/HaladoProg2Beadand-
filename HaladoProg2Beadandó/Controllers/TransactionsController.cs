@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using HaladoProg2Beadandó.Data;
-using HaladoProg2Beadandó.Models.DTOs;
+using HaladoProg2Beadandó.Models.DTOs.Transaction;
 using HaladoProg2Beadandó.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -26,29 +26,26 @@ namespace HaladoProg2Beadandó.Controllers
             var transactions = _logService.AllLogs();
             if (transactions == null || !transactions.Any(x => x.UserId == userId))
                 return NotFound("Nincs ilyen ID-jű felhasználó");
-            var result = transactions.Where(x => x.UserId == userId).OrderByDescending(d => d.Date).ToList();
-            return Ok(result);
+            var result = transactions
+           .Where(x => x.UserId == userId)
+           .OrderByDescending(d => d.Date)
+           .ToList();
+
+            var mapped = mapper.Map<List<TransactionDetailsDTO>>(result);
+            return Ok(mapped);
         }
 
 
         [HttpGet("details/{transactionId}")]
 
-        public async Task<ActionResult<TransactionDetailsDTO>> GetTransactionById(int transactionId)
+        public async Task<IActionResult> GetTransactionById(int transactionId)
         {
-            var transactions = _logService.AllLogs();
-            if (transactions == null || !transactions.Any(x => x.TransactionId == transactionId))
+            var transactions = _logService.AllLogs().FirstOrDefault(x => x.TransactionId == transactionId);
+            if (transactions == null)
                 return NotFound("Nincs ilyen ID-jű tranzakció");
-            var transaction = transactions.FirstOrDefault(x => x.TransactionId == transactionId);
-            var result = new TransactionDetailsDTO
-            {
-                Price = transaction.Price,
-                Amount = transaction.Amount,
-                Date = transaction.Date,
-                Symbol = transaction.Symbol,
-                CryptoCurrencyName = transaction.CryptoCurrencyName
 
-            };
-            return Ok(result);
+            var mapped = mapper.Map<TransactionListDTO>(transactions);
+            return Ok(mapped);
         }
 
     }

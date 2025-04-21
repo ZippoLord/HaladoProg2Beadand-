@@ -1,4 +1,4 @@
-﻿namespace HaladoProg2Beadandó.Models.DTOs
+﻿namespace HaladoProg2Beadandó.Models.DTOs.Transaction
 {
     public class TransactionDetailsDTO
     {
@@ -11,5 +11,7 @@
         public string Symbol { get; set; } = null!;
 
         public string CryptoCurrencyName { get; set; } = null!;
+
+        public string Status { get; set; }
     }
 }

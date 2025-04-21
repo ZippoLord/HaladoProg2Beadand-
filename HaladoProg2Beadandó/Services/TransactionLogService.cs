@@ -1,4 +1,4 @@
-﻿using HaladoProg2Beadandó.Models.DTOs;
+﻿using HaladoProg2Beadandó.Models.DTOs.Transaction;
 using System.Text.Json;
 
 namespace HaladoProg2Beadandó.Services
