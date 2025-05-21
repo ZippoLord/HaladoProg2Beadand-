@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HaladoProg2Beadandó.Models.DTOs.CryptoCurrency
 {
-    public class CryptoCurrencyDTO
+    public class AddCryptoCurrencyDTO
     {
 
         [Required]

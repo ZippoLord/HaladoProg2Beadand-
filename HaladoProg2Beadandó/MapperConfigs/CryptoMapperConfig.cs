@@ -7,7 +7,7 @@ namespace HaladoProg2Beadandó.MapperConfigs
     {
         public CryptoMapperConfig()
         {
-            CreateMap<Models.CryptoCurrency, CryptoCurrencyDTO>().ReverseMap();
+            CreateMap<Models.CryptoCurrency, AddCryptoCurrencyDTO>().ReverseMap();
         }
     
     }

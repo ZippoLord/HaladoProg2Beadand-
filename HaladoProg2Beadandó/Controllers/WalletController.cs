@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using HaladoProg2Beadandó.Models;
 using AutoMapper;
 using HaladoProg2Beadandó.Models.DTOs.Wallet;
+using HaladoProg2Beadandó.Services;
+using HaladoProg2Beadandó.Models.DTOs.User;
 
 
 
@@ -12,52 +14,58 @@ namespace HaladoProg2Beadandó.Controllers
 {
     [ApiController]
     [Route("api/wallet")]
-    public class WalletController : DataContextController
+    public class WalletController : ControllerBase
     {
 
-        private readonly IMapper mapper;
-        public WalletController(DataContext context, IMapper mapper) : base(context) 
+        private readonly IWalletService _walletService;
+        public WalletController(IWalletService walletService) 
             {
-                this.mapper = mapper;
+                 _walletService = walletService;
             }
         
 
         [HttpGet("{userId}")]
-        public async Task<IActionResult> getWalletById(int userId)
+        public async Task<ActionResult> getWalletById(int userId)
         {
-            var wallet = await _context.VirtualWallets
-            .Include(w => w.CryptoAssets)
-            .FirstOrDefaultAsync(w => w.UserId == userId);
-
-            if (wallet == null)
-                return NotFound("Nem található pénztárca ezzel a user Id-vel.");
-
-            var walletDto = mapper.Map<GetWalletDTO>(wallet);
-            return Ok(walletDto);
+            try
+            {
+                var result = await _walletService.getWallet(userId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
 
         [HttpPut("{userId}")]
-        public async Task<IActionResult> EditWalletAmount(int userId, [FromBody] WalletDTO walletDTO)
+        public async Task<IActionResult> EditWalletAmount(int userId, editAmoutDTO walletDTO)
         {
-            var result = await _context.VirtualWallets.FirstOrDefaultAsync(w => w.UserId == userId);
-            if (result == null)
-                return NotFound("Nincs ilyen idjű wallet");
-            result.Amount = walletDTO.Amount;
-            await _context.SaveChangesAsync();
-            return Ok($"Sikeresen módosítva lett a {userId} id-jű wallet egyenlege.");
+            try
+            {
+                var result = await _walletService.EditWalletAmount(userId, walletDTO);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
 
         [HttpDelete("{userId}")]
-        public async Task<IActionResult> DeleteWallet(int userId)
+        public async Task<ActionResult> DeleteWallet(int userId)
         {
-            var result = await _context.VirtualWallets.FirstOrDefaultAsync(w => w.UserId == userId);
-            if (result == null)
-                return NotFound("Nincs ilyen id-jű felhasználó.");
-            _context.VirtualWallets.Remove(result);
-            _context.SaveChanges();
-            return Ok($"Sikeresen törölve lett a {userId} id-hez tartozó walletje.");
+                try
+                {
+                    await _walletService.DeleteWalletByAsync(userId);
+                    return Ok("Sikeresen törölted a pénztárcát");
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
         }
     }
 }

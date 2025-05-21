@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using HaladoProg2Beadandó.Models;
 using HaladoProg2Beadandó.Models.DTOs;
+using HaladoProg2Beadandó.Models.DTOs.BuyAndSell;
 using HaladoProg2Beadandó.Models.DTOs.Wallet;
 
 namespace HaladoProg2Beadandó.MapperConfigs
@@ -12,6 +13,8 @@ namespace HaladoProg2Beadandó.MapperConfigs
         {
             CreateMap<VirtualWallet, GetWalletDTO>();
             CreateMap<CryptoAsset, CryptoAssetDTO>();
+            CreateMap<editAmoutDTO, VirtualWallet>();
+            CreateMap<VirtualWallet, PortfolioDTO>();
         }
 
     }

@@ -1,9 +1,7 @@
-﻿namespace HaladoProg2Beadandó.Models.DTOs
+﻿namespace HaladoProg2Beadandó.Models.DTOs.CryptoPrice
 {
     public class ModifyCryptoPriceDTO
     {
-        public int cryptoId { get; set; }
         public double newPrice { get; set; }
-
     }
 }

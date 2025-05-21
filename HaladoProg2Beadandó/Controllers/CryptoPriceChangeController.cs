@@ -1,6 +1,6 @@
 ﻿using HaladoProg2Beadandó.Data;
 using HaladoProg2Beadandó.Models;
-using HaladoProg2Beadandó.Models.DTOs;
+using HaladoProg2Beadandó.Models.DTOs.CryptoPrice;
 using HaladoProg2Beadandó.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,34 +10,41 @@ namespace HaladoProg2Beadandó.Controllers
 {
     [Route("api/crypto")]
     [ApiController]
-    public class CryptoPriceChangeController : DataContextController
+    public class CryptoPriceChangeController : ControllerBase
     {
 
-        private readonly CryptoChangeLogService _log;   
-        public CryptoPriceChangeController(DataContext context, CryptoChangeLogService log) : base(context) {
-
-            _log = log;
+        private readonly ICryptoPriceChange _cryptoPriceChange;
+        public CryptoPriceChangeController(ICryptoPriceChange cryptoPriceChange)  {
+            _cryptoPriceChange = cryptoPriceChange;
         }
 
         [HttpPut("price")]
-        public async Task<IActionResult> ManualCryptoPrice([FromBody] ModifyCryptoPriceDTO dto)
-        { 
-            var crypto = await _context.CryptoCurrencies.FindAsync(dto.cryptoId);   
-            if (crypto == null)
-                return BadRequest("Nincs ilyen Idjű kriptovaluta");
-            crypto.Price = dto.newPrice;
-            await _context.SaveChangesAsync();
-            return Ok($"Idjű {dto.cryptoId} kriptovaluta árfolyama módosult: {dto.newPrice}");
+        public async Task<IActionResult> ManualCrypto(int cryptoId, [FromBody] ModifyCryptoPriceDTO dto)
+        {
+
+            try { 
+
+                var result = await _cryptoPriceChange.ManualCryptoPrice(cryptoId, dto);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Hiba történt: {ex.Message}");
+            }
         }
 
         [HttpGet("price/history/{cryptoId}")]
         public async Task<IActionResult> LogCryptoChange(int cryptoId)
         {
-            var cryptos = _log.AllLogs();
-            if (cryptos == null || !cryptos.Any(x => x.CryptoCurrencyId == cryptoId))
-                return NotFound("Nincs ilyen id-jű kriptovaluta");
-            var result = cryptos.Where(x => x.CryptoCurrencyId == cryptoId).ToList();
-            return Ok(result);
+            try
+            {
+                var result = await _cryptoPriceChange.HistoryCryptoPricesAsync(cryptoId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Hiba történt: {ex.Message}");
+            }
         }
     }
 }

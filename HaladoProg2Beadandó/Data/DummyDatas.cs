@@ -30,7 +30,7 @@ namespace HaladoProg2Beadandó.Data
                 new CryptoCurrency { Symbol = "TRX", CryptoCurrencyName = "Tron", Price = 0.07, Amount = 2500 },
                 new CryptoCurrency { Symbol = "LTC", CryptoCurrencyName = "Litecoin", Price = 200.00, Amount = 1700 },
                 new CryptoCurrency { Symbol = "LINK", CryptoCurrencyName = "Chainlink", Price = 25.00, Amount = 2100 },
-                new CryptoCurrency { Symbol = "SHIB", CryptoCurrencyName = "Shiba Inu", Price = 0.10, Amount = 100000000 },
+                new CryptoCurrency { Symbol = "SHIB", CryptoCurrencyName = "Shiba Inu", Price = 0.10, Amount = 1000 },
                 new CryptoCurrency { Symbol = "UNI", CryptoCurrencyName = "Uniswap", Price = 15.00, Amount = 1300 }
         };
             context.CryptoCurrencies.AddRange(cryptos);

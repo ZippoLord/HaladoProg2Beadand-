@@ -8,66 +8,80 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using AutoMapper;
 using HaladoProg2Beadandó.Models.DTOs.CryptoCurrency;
+using HaladoProg2Beadandó.Service;
+using HaladoProg2Beadandó.Models.DTOs.User;
 
 namespace HaladoProg2Beadandó.Controllers
 {
     [ApiController]
-    [Route("api/crypto")]
-    public class CryptoCurrencyController : DataContextController
+    [Route("api/")]
+    public class CryptoCurrencyController : ControllerBase
     {
-        private readonly IMapper mapper;
-        public CryptoCurrencyController(DataContext context, IMapper mapper) : base(context) {
-            this.mapper = mapper;
-        }
+        
+        private readonly ICryptoCurrencyService _crypto;
 
+        public CryptoCurrencyController(ICryptoCurrencyService crypto)
+        {
+            _crypto = crypto;
+        }
 
         [HttpGet("cryptos")]
-        public async Task<ActionResult<CryptoCurrency>> GetAllCrypto()
-
+        public async Task<IActionResult> GetAllCrypto()
         {
-            var result = await _context.CryptoCurrencies.ToListAsync();
-            return Ok(result);
+            try
+            {
+                var result = await _crypto.GetAllCryptosAsync();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Hiba történt: {ex.Message}");
+            }
         }
 
-        [HttpGet("{cryptoId}")]
+        [HttpGet("/crypto/{cryptoId}")]
 
-        public async Task<ActionResult<CryptoCurrency>> GetaCryptoById(int cryptoId)
+        public async Task<IActionResult> GetaCryptoById(int cryptoId)
         {
-            var result = await _context.CryptoCurrencies.FindAsync(cryptoId);
-            if(result == null) 
-                return NotFound($"Nincs ilyen id-jű kriptovaluta {cryptoId}");
-            return result;
+            try
+            {
+                var result = await _crypto.GetSelectedCryptoAsync(cryptoId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Hiba történt: {ex.Message}");
+            }
         }
-
-
 
         [HttpPost("cryptos")]
 
-        public async Task<IActionResult> AddCrypto([FromBody] CryptoCurrencyDTO cryptoCurrencyDTO)
+        public async Task<IActionResult> AddCrypto([FromBody] AddCryptoCurrencyDTO AddcryptoCurrencyDTO)
         {
-            bool alreadyExists = await _context.CryptoCurrencies
-            .AnyAsync(c => c.Symbol == cryptoCurrencyDTO.Symbol || c.CryptoCurrencyName == cryptoCurrencyDTO.CryptoCurrencyName);
-
-            if (alreadyExists)
-                return BadRequest("Ez a kriptovaluta már létezik.");
-
-            var crypto = mapper.Map<CryptoCurrency>(cryptoCurrencyDTO);
-            _context.CryptoCurrencies.Add(crypto);
-            await _context.SaveChangesAsync();
-            return Ok("Sikeresen hozzáadta cryptovalutát");
+            try
+            {
+                var result = await _crypto.AddCryptoAsync(AddcryptoCurrencyDTO);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Hiba történt: {ex.Message}");
+            }
         }
-
 
         [HttpDelete("{cryptoId}")]
 
-        public  async Task<ActionResult> DeleteCryptoById(int cryptoId)
+        public async Task<IActionResult> DeleteCryptoById(int cryptoId)
         {
-            var result =  await _context.CryptoCurrencies.FindAsync(cryptoId);
-            if (result == null)
-                return NotFound($"Nincs ilyen id-jű kriptovaluta {cryptoId}");
-            _context.CryptoCurrencies.Remove(result);
-            await _context.SaveChangesAsync();
-            return Ok($"Sikeresen törölve lett a {cryptoId} id-jű crypto.");
+            try
+            {
+                await _crypto.DeleteCryptoAsync(cryptoId);
+                return Ok("Sikeresen törölted a kriptot");
+            }
+            catch (Exception ex)
+            {
+               return StatusCode(500, $"Hiba történt: {ex.Message}");
+            }
         }
 
 

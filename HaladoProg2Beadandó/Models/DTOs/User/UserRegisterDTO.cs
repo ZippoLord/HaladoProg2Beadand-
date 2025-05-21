@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HaladoProg2Beadandó.Models.DTOs.User
 {
+
     public class UserRegisterDTO
     {
 
@@ -13,7 +14,6 @@ namespace HaladoProg2Beadandó.Models.DTOs.User
         public string Email { get; set; } = null!;
 
         [Required]
-        [StringLength(7, MinimumLength = 7, ErrorMessage = "The password must be 7 characters long")]
         public string Password { get; set; } = null!;
     }
 }

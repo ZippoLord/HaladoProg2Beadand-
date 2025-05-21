@@ -1,6 +1,6 @@
 ﻿namespace HaladoProg2Beadandó.Models.DTOs.Wallet
 {
-    public class WalletDTO
+    public class editAmoutDTO
     {
         public double Amount { get; set; }
     }
