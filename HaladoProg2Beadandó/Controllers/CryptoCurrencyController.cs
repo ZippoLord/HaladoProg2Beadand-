@@ -39,7 +39,7 @@ namespace HaladoProg2Beadandó.Controllers
             }
         }
 
-        [HttpGet("/crypto/{cryptoId}")]
+        [HttpGet("/cryptos/{cryptoId}")]
 
         public async Task<IActionResult> GetaCryptoById(int cryptoId)
         {
@@ -69,7 +69,7 @@ namespace HaladoProg2Beadandó.Controllers
             }
         }
 
-        [HttpDelete("{cryptoId}")]
+        [HttpDelete("cryptos/{cryptoId}")]
 
         public async Task<IActionResult> DeleteCryptoById(int cryptoId)
         {

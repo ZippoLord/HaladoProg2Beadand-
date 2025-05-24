@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using HaladoProg2Beadandó.Models;
+using HaladoProg2Beadandó.Entities;
 
 namespace HaladoProg2Beadandó.Data
 {
@@ -11,6 +12,10 @@ namespace HaladoProg2Beadandó.Data
         public DbSet<CryptoCurrency> CryptoCurrencies { get; set; }
 
         public DbSet<CryptoAsset> CryptoAssets { get; set; }
+
+        public DbSet<CryptoPriceHistory> CryptoPriceHistories { get; set; }
+
+        public DbSet<Transaction> Transactions { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
@@ -32,6 +37,15 @@ namespace HaladoProg2Beadandó.Data
                 .HasForeignKey(ca => ca.VirtualWalletId);
 
             modelBuilder.Entity<CryptoCurrency>().ToTable("CryptoCurrencies");
+
+            modelBuilder.Entity<CryptoPriceHistory>().ToTable("CryptoPriceHistories");
+            modelBuilder.Entity<CryptoPriceHistory>()
+                .HasOne(cph => cph.CryptoCurrency)
+                .WithMany(cc => cc.PriceHistory)
+                .HasForeignKey(cph => cph.CryptoCurrencyId);
+
+
+            modelBuilder.Entity<Transaction>().ToTable("Transactions");
         }
 
     }

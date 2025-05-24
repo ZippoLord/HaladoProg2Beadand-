@@ -6,7 +6,8 @@
         public string CryptoCurrencyName { get; set; }
         public string Symbol { get; set; }
         public double NewPrice { get; set; }
-        public double ChangePercent { get; set; }
+
+        public DateTime Date { get; set; } = DateTime.UtcNow;
 
     }
 }

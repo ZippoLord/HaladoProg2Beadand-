@@ -1,4 +1,7 @@
 ﻿
+using HaladoProg2Beadandó.Entities;
+using System.Text.Json.Serialization;
+
 namespace HaladoProg2Beadandó.Models
 {
     public class CryptoCurrency
@@ -11,6 +14,9 @@ namespace HaladoProg2Beadandó.Models
         public double Price { get; set; }
 
         public double Amount { get; set; }
-
+        
+        
+        [JsonIgnore]
+        public List<CryptoPriceHistory> PriceHistory { get; set; } = [];
     }
 }

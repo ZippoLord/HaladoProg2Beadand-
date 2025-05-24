@@ -3,6 +3,8 @@ using HaladoProg2Beadandó.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 using HaladoProg2Beadandó.Models.DTOs.CryptoPrice;
+using HaladoProg2Beadandó.Entities;
+using BCrypt.Net;
 
 namespace HaladoProg2Beadandó.Services
 {
@@ -10,39 +12,53 @@ namespace HaladoProg2Beadandó.Services
     public interface ICryptoPriceChange
     {
         Task AutoChangePricesAsync(CancellationToken stoppingToken);
-        Task<CryptoCurrency> ManualCryptoPrice(int cryptoId, ModifyCryptoPriceDTO dto);
+        Task<CryptoPriceChangeDTO> ManualCryptoPrice(int cryptoId, ModifyCryptoPriceDTO dto);
         Task<List<CryptoPriceChangeDTO>> HistoryCryptoPricesAsync(int cryptoId);
     }
     public class CryptoPriceChangeService : ICryptoPriceChange
     {
-        private readonly IServiceScopeFactory _scopeFactory;
-        private readonly ILogger<CryptoPriceChangeService> _logger;
+        private readonly DataContext context;
 
-        public CryptoPriceChangeService(IServiceScopeFactory scopeFactory, ILogger<CryptoPriceChangeService> logger)
+        public CryptoPriceChangeService(DataContext context)
         {
-            _scopeFactory = scopeFactory;
-            _logger = logger;
+            this.context = context;
         }
 
-        public async Task<CryptoCurrency> ManualCryptoPrice(int cryptoId, ModifyCryptoPriceDTO dto)
+
+
+        public async Task<CryptoPriceChangeDTO> ManualCryptoPrice(int cryptoId, ModifyCryptoPriceDTO dto)
         {
-            using var scope = _scopeFactory.CreateScope();
-            var context = scope.ServiceProvider.GetRequiredService<DataContext>();
+            var crypto = await context.CryptoCurrencies
+            .FirstOrDefaultAsync(x => x.CryptoCurrencyId == cryptoId);
 
-            var crypto = await context.CryptoCurrencies.FindAsync(cryptoId);
             if (crypto == null)
-                throw new InvalidOperationException("Nincs ilyen id-jű kriptovaluta");
+                throw new KeyNotFoundException("Crypto currency not found.");
 
+
+            context.CryptoPriceHistories.Add(new CryptoPriceHistory
+            {
+                CryptoCurrencyId = cryptoId,
+                Price = dto.newPrice,
+                LoggedAt = DateTime.UtcNow
+            });
+
+            // Friss ár mentése (ha van ilyen meződ)
             crypto.Price = dto.newPrice;
+
             await context.SaveChangesAsync();
-            return crypto;
+
+            return new CryptoPriceChangeDTO
+            {
+                CryptoCurrencyId = crypto.CryptoCurrencyId,
+                CryptoCurrencyName = crypto.CryptoCurrencyName,
+                Symbol = crypto.Symbol,
+                NewPrice = dto.newPrice,
+                Date = DateTime.UtcNow
+            };
         }
 
         public async Task AutoChangePricesAsync(CancellationToken stoppingToken)
         {
-
-            using var scope = _scopeFactory.CreateScope();
-            var context = scope.ServiceProvider.GetRequiredService<DataContext>();
 
             var cryptos = await context.CryptoCurrencies.ToListAsync(stoppingToken);
             var rand = new Random();
@@ -52,43 +68,31 @@ namespace HaladoProg2Beadandó.Services
                 var newPrice = crypto.Price * (1 + priceChange / 100);
                 crypto.Price = Math.Round(newPrice, 2);
                 context.CryptoCurrencies.Update(crypto);
-                var logObject = new
+                await context.CryptoPriceHistories.AddAsync(new CryptoPriceHistory
                 {
                     CryptoCurrencyId = crypto.CryptoCurrencyId,
-                    Symbol = crypto.Symbol,
-                    CryptoCurrencyName = crypto.CryptoCurrencyName,
-                    NewPrice = crypto.Price,
-                    ChangePercent = priceChange
-                    //TODO MAYBE DATE
-                };
+                    Price = crypto.Price
+                }, stoppingToken);
 
-                var json = JsonSerializer.Serialize(logObject);
-                await File.AppendAllTextAsync("DataLogs/crypto_price_change_log.jsonl", json + Environment.NewLine);
             }
             await context.SaveChangesAsync(stoppingToken);
         }
 
-
-                public async Task<List<CryptoPriceChangeDTO>> HistoryCryptoPricesAsync(int cryptoId)
+        public async Task<List<CryptoPriceChangeDTO>> HistoryCryptoPricesAsync(int cryptoId)
+        {
+            var list = await context.CryptoPriceHistories.Where(x => x.CryptoCurrencyId == cryptoId)
+                .OrderByDescending(x => x.LoggedAt)
+                .Select(x => new CryptoPriceChangeDTO
                 {
-                    using var stream = File.OpenRead("DataLogs/crypto_price_change_log.jsonl");
-                    using var reader = new StreamReader(stream);
-                    List<CryptoPriceChangeDTO> cryptoPriceChanges = new List<CryptoPriceChangeDTO>();
+                    CryptoCurrencyId = x.CryptoCurrencyId,
+                    CryptoCurrencyName = x.CryptoCurrency.CryptoCurrencyName,
+                    Symbol = x.CryptoCurrency.Symbol,
+                    NewPrice = x.Price,
+                    Date = x.LoggedAt.ToLocalTime()
 
-                    string? line;
-                    while ((line = await reader.ReadLineAsync()) != null)
-                    {
-                        var selectedCrypto = JsonSerializer.Deserialize<CryptoPriceChangeDTO>(line);
-                        if (selectedCrypto != null && selectedCrypto.CryptoCurrencyId == cryptoId)
-                        {
-                            cryptoPriceChanges.Add(selectedCrypto);
-                        }
-                    }
-
-                    if (cryptoPriceChanges.Count == 0)
-                        throw new InvalidOperationException("Nincs ilyen id-jű kriptovaluta");
-
-                    return cryptoPriceChanges;
-                }
+                })
+                .ToListAsync();
+            return list;
+        }
     }
 }

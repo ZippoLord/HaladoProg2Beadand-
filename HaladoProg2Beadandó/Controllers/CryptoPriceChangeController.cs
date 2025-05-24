@@ -14,7 +14,8 @@ namespace HaladoProg2Beadandó.Controllers
     {
 
         private readonly ICryptoPriceChange _cryptoPriceChange;
-        public CryptoPriceChangeController(ICryptoPriceChange cryptoPriceChange)  {
+        public CryptoPriceChangeController(ICryptoPriceChange cryptoPriceChange)
+        {
             _cryptoPriceChange = cryptoPriceChange;
         }
 
@@ -22,7 +23,8 @@ namespace HaladoProg2Beadandó.Controllers
         public async Task<IActionResult> ManualCrypto(int cryptoId, [FromBody] ModifyCryptoPriceDTO dto)
         {
 
-            try { 
+            try
+            {
 
                 var result = await _cryptoPriceChange.ManualCryptoPrice(cryptoId, dto);
                 return Ok(result);

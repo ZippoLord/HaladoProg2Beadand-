@@ -4,6 +4,7 @@ using HaladoProg2Beadandó.MapperConfigs;
 using HaladoProg2Beadandó.Models;
 using HaladoProg2Beadandó.Service;
 using HaladoProg2Beadandó.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Serilog.Formatting.Json;
@@ -21,7 +22,7 @@ namespace HaladoProg2Beadandó
             options.UseSqlServer("Server=localhost;Database=CryptoDb_ARZ5PC;Trusted_Connection=True;TrustServerCertificate=True"));
 
 
-            builder.Host.UseSerilog();
+            //builder.Host.UseSerilog();
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -30,14 +31,13 @@ namespace HaladoProg2Beadandó
 
 
             builder.Services.AddHostedService<CryptoPriceBackgroundService>();
-            builder.Services.AddSingleton<TransactionLogService>();
-            builder.Services.AddSingleton<CryptoChangeLogService>();
+          
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IWalletService, WalletService>();
             builder.Services.AddScoped<ISellBuyCryptoService, SellBuyCryptoService>();
 
             builder.Services.AddScoped<ICryptoCurrencyService, CryptoCurrencyService>();
-
+            builder.Services.AddScoped<ITransactionService, TransactionService>();
             builder.Services.AddScoped<ICryptoPriceChange, CryptoPriceChangeService>();
             builder.Logging.AddConsole();
             var app = builder.Build();
@@ -49,6 +49,8 @@ namespace HaladoProg2Beadandó
             {
                 var services = scope.ServiceProvider;
                 var context = services.GetRequiredService<DataContext>();
+                context.Database.EnsureCreated();
+                context.Database.Migrate();
                 DummyDatas.SeedDatabase(context);
             }
 
@@ -60,12 +62,11 @@ namespace HaladoProg2Beadandó
                 app.UseSwaggerUI();
             }
 
-            app.UseHttpsRedirection();
-
-            app.UseAuthorization();
-
-
             app.MapControllers();
+            app.UseHttpsRedirection();
+            app.UseAuthorization();
+           // app.UseMiddleware<Middlewares.ExceptionHandlingMiddleware>();
+
 
             app.Run();
         }

@@ -10,29 +10,26 @@ namespace HaladoProg2Beadandó.Controllers
 {
     [Route("api/transactions")]
     [ApiController]
-    public class TransactionsController : DataContextController
+    public class TransactionsController : ControllerBase
     {
-        private readonly TransactionLogService _logService; 
-        private readonly IMapper mapper;
-        public TransactionsController(DataContext context, IMapper mapper, TransactionLogService logService) : base(context)
+        private readonly ITransactionService _transactions;
+        public TransactionsController(ITransactionService transactions)
         {
-            _logService = logService;
-            this.mapper = mapper;
+            _transactions = transactions;
         }
 
         [HttpGet("{userId}")]
         public async Task<IActionResult> GetTransactionsByUserId(int userId)
         {
-            var transactions = _logService.AllLogs();
-            if (transactions == null || !transactions.Any(x => x.UserId == userId))
-                return NotFound("Nincs ilyen ID-jű felhasználó");
-            var result = transactions
-           .Where(x => x.UserId == userId)
-           .OrderByDescending(d => d.Date)
-           .ToList();
-
-            var mapped = mapper.Map<List<TransactionDetailsDTO>>(result);
-            return Ok(mapped);
+            try
+            {
+                var result = await _transactions.GetTransactionsByUserId(userId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Hiba történt: {ex.Message}");
+            }
         }
 
 
@@ -40,12 +37,15 @@ namespace HaladoProg2Beadandó.Controllers
 
         public async Task<IActionResult> GetTransactionById(int transactionId)
         {
-            var transactions = _logService.AllLogs().FirstOrDefault(x => x.TransactionId == transactionId);
-            if (transactions == null)
-                return NotFound("Nincs ilyen ID-jű tranzakció");
-
-            var mapped = mapper.Map<TransactionListDTO>(transactions);
-            return Ok(mapped);
+            try
+            {
+                var result = await _transactions.GetTransactionsByTransactionId(transactionId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Hiba történt: {ex.Message}");
+            }
         }
 
     }

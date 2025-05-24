@@ -25,13 +25,12 @@ namespace HaladoProg2Beadandó.Services
 
         private readonly DataContext _context;
         private readonly IMapper _mapper;
-        private readonly TransactionLogService _logService;
-
-        public SellBuyCryptoService(DataContext context, IMapper mapper, TransactionLogService logService)
+       
+        public SellBuyCryptoService(DataContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
-            _logService = logService;
+            
         }
 
         public async Task BuyCrypto(int userId, BuyCryptoDTO BuyCryptoDTO)
@@ -81,17 +80,19 @@ namespace HaladoProg2Beadandó.Services
                 };
                 _context.CryptoAssets.Add(newAsset);
             }
-            //var logEntry = new TransactionDTO
-            //{
-            //    UserId = userId,
-            //    Symbol = dto.Symbol,
-            //    CryptoCurrencyName = dto.CryptoCurrencyName,
-            //    Amount = dto.AmountToBuy,
-            //    Price = totalCost,
-            //    Date = DateTime.UtcNow,
-            //    Status = "buy"
-            //};
-            //_logService.AddLog(logEntry);
+
+
+            var list = _context.Transactions.Add(
+                new Transaction
+                { 
+                    UserId = userId,
+                    Symbol = BuyCryptoDTO.Symbol,
+                    CryptoCurrencyName = BuyCryptoDTO.CryptoCurrencyName,
+                    Amount = BuyCryptoDTO.AmountToBuy,
+                    Price = totalCost,
+                    Date = DateTime.UtcNow,
+                    Status = "buy"
+                });
 
             await _context.SaveChangesAsync();
         }
@@ -99,8 +100,6 @@ namespace HaladoProg2Beadandó.Services
 
         public async Task SellCrypto(int userId, SellCryptoDTO dto)
         {
-
-            //var transactions = _logService.AllLogs();
             var user = await _context.Users
                .Include(u => u.VirtualWallet)
                .ThenInclude(w => w.CryptoAssets)
@@ -143,20 +142,19 @@ namespace HaladoProg2Beadandó.Services
             //hozzáadom a kikalkulát árat
             user.VirtualWallet.Amount += totalSale;
 
-            //    var LogEntry = new TransactionDTO
-            //    {
-            //        UserId = userId,
-            //        Symbol = dto.Symbol,
-            //        CryptoCurrencyName = dto.CryptoCurrencyName,
-            //        Amount = dto.AmountToSell,
-            //        Price = totalSale,
-            //        Date = DateTime.UtcNow,
-            //        Status = "sell"
-            //    };
 
-            //    _logService.AddLog(LogEntry);
 
-            //}
+            var transaction = _context.Transactions.Add(
+                  new Transaction
+                  {
+                      UserId = userId,
+                      Symbol = dto.Symbol,
+                      CryptoCurrencyName = dto.CryptoCurrencyName,
+                      Amount = dto.AmountToSell,
+                      Price = totalSale,
+                      Date = DateTime.UtcNow,
+                      Status = "sell"
+                  });
 
             await _context.SaveChangesAsync();
         }
